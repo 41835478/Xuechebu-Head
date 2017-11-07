@@ -43,6 +43,7 @@ Page({
         var series = [{
             name: info.title,
             data: info.data,
+            color: info.color,
             format: function (val, name) {
                 return val.toFixed(0) + info.unit;
             }
@@ -125,7 +126,8 @@ Page({
           Ydes:'报名人数',
           Xdes:'报名人数',
           unit: '',
-          id:0
+          id:0,
+          color: '#0fb442'
           });
       for (var i = 0; i < result2.length; i++) {
         var item = result2[i];
@@ -139,7 +141,8 @@ Page({
         Ydes: '收入(万元)',
         Xdes: '收入',
         unit: '万元',
-        id: 1
+        id: 1,
+        color: '#069fed'
       });
 
       for (var i = 0; i < result3.length; i++) {
@@ -154,7 +157,8 @@ Page({
         Ydes: '科二训练空车率(%)',
         Xdes: '科二训练空车率',
         unit: '%',
-        id: 2
+        id: 2,
+        color:'#ff3c3c'
       });
 
       for (var i = 0; i < result4.length; i++) {
@@ -169,7 +173,8 @@ Page({
         Ydes: '科三训练空车率(%)',
         Xdes: '科三训练空车率',
         unit: '%',
-        id: 3
+        id: 3,
+        color: '#ffa911'
       });
       for (var i = 0; i < result5.length; i++) {
         var item = result5[i];
@@ -183,7 +188,8 @@ Page({
         Ydes: '科一考试通过率(%)',
         Xdes: '科一考试通过率',
         unit: '%',
-        id: 4
+        id: 4,
+        color: '#ffa911'
       });
 
       for (var i = 0; i < result6.length; i++) {
@@ -198,7 +204,8 @@ Page({
         Ydes: '科二考试通过率(%)',
         Xdes: '科二考试通过率',
         unit: '%',
-        id: 5
+        id: 5,
+        color: '#ffa911'
       });
 
       for (var i = 0; i < result7.length; i++) {
@@ -213,7 +220,8 @@ Page({
         Ydes: '科三考试通过率(%)',
         Xdes: '科三考试通过率',
         unit: '%',
-        id: 6
+        id: 6,
+        color: '#ffa911'
       });
       for (var i = 0; i < result8.length; i++) {
         var item = result8[i];
@@ -227,7 +235,8 @@ Page({
         Ydes: '科四考试通过率(%)',
         Xdes: '科四考试通过率',
         unit: '%',
-        id: 7
+        id: 7,
+        color: '#ffa911'
       });
       for (var i = 0; i < 8; i++) {
         var info = dataSource[i];
@@ -273,7 +282,7 @@ Page({
         chartsList: dataSource,
         todayTime: data.data.todaytime,
         infoList: infoArray,
-        screenHeight: wx.getSystemInfoSync().windowHeight - 85
+        screenHeight: wx.getSystemInfoSync().windowHeight - 90
       });  
       that.updateData(chartsArray[1], dataSource[1]);
       that.updateData(chartsArray[2], dataSource[2]);
