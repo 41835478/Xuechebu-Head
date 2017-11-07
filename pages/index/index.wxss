@@ -18,15 +18,15 @@
 
 .usermotto {
   display: flex;
-  height: 50px;
+  height: 40px;
   width: 100%;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: lightgray;
 }
 .user-motto {
   display: flex;
   align-self: center;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   color: red;
 }
