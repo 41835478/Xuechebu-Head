@@ -1,0 +1,78 @@
+/* pages/line/line.wxss */
+
+.chartItem{
+  width: 100%;
+  background-color: white;
+}
+.canvas{
+  width: 96%;
+  height: 200px;
+  display: flex;
+}
+
+.canvas1{
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+
+.chart-title {
+  padding-top: 8px;
+  justify-content: center;
+  font-size: 12;
+  color: #333333;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+.time-text {
+  display: flex; 
+  justify-content: center;
+  height: 20px;
+  width: 100%;
+  font-size: 26rpx;
+  color: #333333;
+  text-align: center;
+  background-color: lightgray;
+}
+.infoDetail {
+  display: flex;
+  width:100%;
+  height: 65px;
+  background-color: #f2f2f2;
+  flex-direction: row;
+
+}
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  width: 34%;
+}
+.line {
+  display: flex;
+  height: 100%;
+  width: 1px;
+  background-color: black;
+}
+.infoText {
+  display: flex;
+  align-self: center;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.infoTitle {
+  display: flex;
+  margin-top: 3px;
+  align-self: center;
+}
+.space{
+  display: flex;
+  width: 100%;
+  height: 10px;
+  background-color: #f2f2f2;
+}
+.container {
+  background-color: #f2f2f2;
+}

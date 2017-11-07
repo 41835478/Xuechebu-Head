@@ -1,0 +1,28 @@
+<view class='container'>
+<text class='time-text'>今天是{{todayTime}},以下数据将为你实时更新</text>
+
+<view class='infoDetail' >
+<block wx:for="{{infoList}}">
+    <view class='infoItem'>
+      <text class='infoText'>{{item.num}}</text>
+      <text class='infoTitle'>{{item.title}}</text>
+    </view>
+      <block wx:if="{{item.title!='收入'}}">
+          <view class='line'></view>
+      </block>
+    </block>
+  </view>
+
+<scroll-view style="height: {{screenHeight}}px;" scroll-y="true" class="chartList">
+<block wx:for="{{chartsList}}">
+<view class='chartItem'>
+<text class="chart-title">{{item.title}}</text>
+ <canvas canvas-id="lineCanvas{{item.id}}" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas>
+ <view class='space'></view>
+ </view>
+</block>
+ </scroll-view>
+</view>
+
+
+  <!-- bindtouchstart="touchHandler" -->

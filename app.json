@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/book/book",
+    "pages/home/home",
+    "pages/logs/logs",
+    "pages/index/index",
+    "pages/line/line"      
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#1b8eef",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "学车不-校长",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#030303",
+    "selectedColor": "#111",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/line/line",
+        "iconPath": "image/sjfx_icon_g.png",
+        "selectedIconPath": "image/sjfx_icon_b.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/wode_icon_g.png",
+        "selectedIconPath": "image/wode_icon_b.png",
+        "text": "我"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
