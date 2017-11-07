@@ -11,27 +11,41 @@ Page({
     inputMobileNumber: '',
     checkMobilePass: false,
     systemInfo: {},
-    fromPage: ''
+    fromPage: '',
+    motto: '什么👻',
   },
-  onLoad: function (obj) {
-    var that = this;
-    var fromPage;
-    console.log(obj);
-    if (obj && obj.fromPage) {
-      fromPage = obj.fromPage.replace("pages", "..");
-      that.setData({
-        fromPage: fromPage
-      });
-    }
 
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          systemInfo: res
-        });
-      }
+  onLoad: function () {
+    console.log('onLoad')
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      })
     })
   },
+
+  // onLoad: function (obj) {
+  //   var that = this;
+  //   var fromPage;
+  //   console.log(obj);
+  //   if (obj && obj.fromPage) {
+  //     fromPage = obj.fromPage.replace("pages", "..");
+  //     that.setData({
+  //       fromPage: fromPage
+  //     });
+  //   }
+
+  //   wx.getSystemInfo({
+  //     success: function (res) {
+  //       that.setData({
+  //         systemInfo: res
+  //       });
+  //     }
+  //   })
+  // },
   onShow: function () {
 
   },
@@ -95,6 +109,8 @@ Page({
       }
     })
   },
+
+
   //选择手机号登录
   tapMobileLogin: function () {
     this.setData({
@@ -123,7 +139,7 @@ Page({
   getVcode: function (cal) {
     var that = this;
     util.JFrequest({
-      url: 'https://t.superabc.cn/c/s/getvcode',
+      url: 'https://jptest2.xuechebu.com/sms/GetSmsRandCode?islogin=1',
       param: {
         mobile_no: that.data.inputMobileNumber
       },
@@ -141,6 +157,7 @@ Page({
           //
         }
       }
+  
     });
   },
   //tapMobileLoginSubmit
