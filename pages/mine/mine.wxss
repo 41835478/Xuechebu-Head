@@ -1,14 +1,17 @@
 /**index.wxss**/
 .userinfo {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
+  background-color: aliceblue;
 }
 
 .userinfo-avatar {
+
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin: 30rpx;
   border-radius: 50%;
 }
 
@@ -18,14 +21,16 @@
 
 .usermotto {
   display: flex;
+  margin-top: 30rpx;
   height: 40px;
   width: 100%;
-  /* justify-content: center; */
-  background-color: lightgray;
+  background-color: aliceblue;
+  
 }
 .user-motto {
   display: flex;
   align-self: center;
+  margin-left: 40rpx;
   font-size: 15px;
   font-weight: 500;
   color: red;

@@ -1,10 +1,8 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/book/book",
-    "pages/home/home",
     "pages/logs/logs",
-    "pages/index/index",
+    "pages/mine/mine",
     "pages/line/line"      
   ],
   "window": {
@@ -27,7 +25,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "iconPath": "image/wode_icon_g.png",
         "selectedIconPath": "image/wode_icon_b.png",
         "text": "我"
