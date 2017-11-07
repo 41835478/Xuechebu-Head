@@ -139,9 +139,10 @@ Page({
   getVcode: function (cal) {
     var that = this;
     util.JFrequest({
-      url: 'https://jptest2.xuechebu.com/sms/GetSmsRandCode?islogin=1',
+      url: 'https://jptest2.xuechebu.com/sms/GetSmsRandCode',
       param: {
-        mobile_no: that.data.inputMobileNumber
+        mobile_no: that.data.inputMobileNumber,
+        islogin: '1'
       },
       success: function (res) {
         if (res && res.statusCode == 200 && res.data && res.data.code == 0) {
@@ -162,9 +163,6 @@ Page({
   },
   //tapMobileLoginSubmit
   tapMobileLoginSubmit: function (cal) {
-    // wx.navigateTo({
-    //   url: '../line/line'
-    // });
     wx.switchTab({
       url: '../line/line'
     });
@@ -193,8 +191,8 @@ Page({
     //       //存储个人信息
     //       app.setUserInfo(userInfo);
     //       //跳转到首页
-    //       wx.navigateTo({
-    //         url: '../index/index'
+    //       wx.switchTab({
+    //         url: '../line/line'
     //       });
 
 
@@ -203,10 +201,6 @@ Page({
     //       }
     //     } else {
     //       console.log("请求数据失败，读取缓存");
-    //       //
-    //       wx.navigateTo({
-    //         url: '../index/index'
-    //       });
     //     }
 
 

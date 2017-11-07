@@ -127,7 +127,8 @@ Page({
           Xdes:'报名人数',
           unit: '',
           id:0,
-          color: '#0fb442'
+          color: '#0fb442',
+          point: false
           });
       for (var i = 0; i < result2.length; i++) {
         var item = result2[i];
@@ -142,7 +143,8 @@ Page({
         Xdes: '收入',
         unit: '万元',
         id: 1,
-        color: '#069fed'
+        color: '#069fed',
+        point: true
       });
 
       for (var i = 0; i < result3.length; i++) {
@@ -158,7 +160,8 @@ Page({
         Xdes: '科二训练空车率',
         unit: '%',
         id: 2,
-        color:'#ff3c3c'
+        color:'#ff3c3c',
+        point: false
       });
 
       for (var i = 0; i < result4.length; i++) {
@@ -174,7 +177,8 @@ Page({
         Xdes: '科三训练空车率',
         unit: '%',
         id: 3,
-        color: '#ffa911'
+        color: '#ffa911',
+        point: false
       });
       for (var i = 0; i < result5.length; i++) {
         var item = result5[i];
@@ -189,7 +193,8 @@ Page({
         Xdes: '科一考试通过率',
         unit: '%',
         id: 4,
-        color: '#ffa911'
+        color: '#ffa911',
+        point: false
       });
 
       for (var i = 0; i < result6.length; i++) {
@@ -205,7 +210,8 @@ Page({
         Xdes: '科二考试通过率',
         unit: '%',
         id: 5,
-        color: '#ffa911'
+        color: '#ffa911',
+        point: false
       });
 
       for (var i = 0; i < result7.length; i++) {
@@ -221,7 +227,8 @@ Page({
         Xdes: '科三考试通过率',
         unit: '%',
         id: 6,
-        color: '#ffa911'
+        color: '#ffa911',
+        point: false
       });
       for (var i = 0; i < result8.length; i++) {
         var item = result8[i];
@@ -236,7 +243,8 @@ Page({
         Xdes: '科四考试通过率',
         unit: '%',
         id: 7,
-        color: '#ffa911'
+        color: '#ffa911',
+        point: false
       });
       for (var i = 0; i < 8; i++) {
         var info = dataSource[i];
@@ -272,7 +280,7 @@ Page({
           width: windowWidth,
           height: 200,
           dataLabel: true,
-          dataPointShape: true,
+          dataPointShape: info.point,
           extra: {
             lineStyle: 'curve'
           }

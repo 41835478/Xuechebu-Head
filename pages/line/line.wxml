@@ -13,6 +13,7 @@
     </block>
   </view>
 
+<view class='space'></view>
 <scroll-view style="height: 100%;" scroll-y="true" class="chartList">
 <block wx:for="{{chartsList}}">
 <view class='chartItem'>

@@ -55,7 +55,33 @@ module.exports = {
   fetchChartList: function (url, jgid, cb) {
     var that = this
     wx.request({
-      url: url + '?jgid=' + jgid,
+      url: url ,
+      data: {jgid: jgid
+      },
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        var data = res.data
+        // if (data.subjects.length === 0) {
+        //   that.setData({
+        //     hasMore: false,
+        //   })
+        // } else {
+        //     films: that.data.films.concat(data.subjects),
+        //   that.setData({
+        //     start: that.data.start + data.subjects.length
+        //   })
+        // }
+        cb(data)
+      }
+    })
+  },
+  getVeriCode:function(url,parameters,callback){
+    var that = this
+    wx.request({
+      url: url,
+      data: parameters,
       header: {
         "Content-Type": "json",
       },
