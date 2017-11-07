@@ -111,12 +111,12 @@ Page({
   },
 
 
-  //选择手机号登录
-  tapMobileLogin: function () {
-    this.setData({
-      mobile_login: true,
-    })
-  },
+  // //选择手机号登录
+  // tapMobileLogin: function () {
+  //   this.setData({
+  //     mobile_login: true,
+  //   })
+  // },
   tapGetVcode: function (e) {
     //获取vcode
     var that = this;
@@ -138,36 +138,67 @@ Page({
   //获取验证码
   getVcode: function (cal) {
     var that = this;
-    util.JFrequest({
+    wx.request({
       url: 'https://jptest2.xuechebu.com/sms/GetSmsRandCode',
-      param: {
-        mobile_no: that.data.inputMobileNumber,
-        islogin: '1'
+      data: {
+        phonenum: that.data.inputMobileNumber,
+        codemark: "1",
+        islogin: "1"
+      },
+      header: {
+        "Content-Type": "json",
       },
       success: function (res) {
-        if (res && res.statusCode == 200 && res.data && res.data.code == 0) {
-          if (typeof cal == 'function') {
-            cal(res.data.data);
-          }
-        } else {
+        var data = res.data
+        if (data.code==0){
+          that.setData({
+            has_get_vcode: true,
+          })
+       
+        }else{
           wx.showToast({
-            title: res.err_msg,
-            icon: 'success',
-            duration: 1000
-          });
-          //
+            title: '获取验证码失败',
+            icon: fail,
+            duration: 2000
+          })
         }
       }
+    })
   
-    });
   },
   //tapMobileLoginSubmit
   tapMobileLoginSubmit: function (cal) {
-    wx.switchTab({
-      url: '../line/line'
-    });
-    // var that = this;
-    // var userInfo = {};
+    // wx.switchTab({
+    //   url: '../line/line'
+    // });
+
+    //获取vcode
+    var that = this;
+    if (that.data.inputMobileNumber){
+      if (that.data.has_get_vcode) {
+        //执行网络请求，进行登录
+        that.loginByPhone(function (data) {
+
+        });
+      } else {
+        wx.showToast({
+          title: '请获取验证码！',
+          icon: 'fail',
+          duration: 2000
+        })
+        return false;
+      }
+
+    }else{
+      wx.showToast({
+        title: '请输入手机号！',
+        icon: 'failure',
+        duration: 2000
+      })
+      return false;
+    }
+   
+ 
     // util.JFrequest({
     //   url: 'https://t.superabc.cn/c/s/mobilelogin',
     //   param: {
@@ -208,6 +239,40 @@ Page({
     // });
   },
 
+ loginByPhone:function(e){
+   var that = this;
+   var userInfo = {};
+   wx.request({
+     url: 'https://jptest2.xuechebu.com/UserCenter/UserInfo/LoginCode?',
+     data: { username: that.data.inputMobileNumber,
+           code: that.data.inputVcode,
+        },
+
+    header: {
+       "Content-Type": "json",
+     },
+     success: function (res) {
+       var data = res.data
+       if (data.code == 0) {
+         that.setData({
+           mobile_login: true,
+         })
+         wx.setStorage({
+           key: 'isPhonelogin',
+           data: 'true',
+         })
+        wx.switchTab({
+         url: '../line/line'
+         });
+         
+       }
+     }
+   })
+
+
+ },
+
+
   //校验手机号
   checkMobileRegExp: function (e) {
     var that = this;
@@ -218,6 +283,12 @@ Page({
         inputMobileNumber: number
       });
     } else {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: fail,
+        duration: 2000
+      })
+
       that.setData({
         checkMobilePass: false,
       });
