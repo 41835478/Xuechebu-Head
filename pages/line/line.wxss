@@ -32,15 +32,15 @@
   height: 20px;
   width: 100%;
   font-size: 26rpx;
-  color: #333333;
+  color: #999999;
   text-align: center;
-  background-color: lightgray;
+  background-color: #f2f2f2;
 }
 .infoDetail {
   display: flex;
   width:100%;
   height: 65px;
-  background-color: #f2f2f2;
+  background-color: #e4e4e4;
   flex-direction: row;
 
 }
@@ -61,11 +61,13 @@
   margin-top: 8px;
   font-weight: 600;
   font-size: 18px;
+  color: #333333;
 }
 .infoTitle {
   display: flex;
   margin-top: 3px;
   align-self: center;
+  color: #999999;
 }
 .space{
   display: flex;
