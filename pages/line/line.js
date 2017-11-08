@@ -1,13 +1,18 @@
 var wxCharts = require('../../utils/wxcharts.js');
 var functions = require('../functions.js')
-var url = 'https://xzzstest1.xuechebu.com/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
-// var url = 'https://jptest4.xuechebu.com/BaoMingApi/jxinfo/GetJxInfoList?pageSize=6&userwd=37.786768&sort=1&regionid=1';
-var jgid = 140001;
+var url = wx.getStorageSync('APIURLIOS') +'/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
+// var url = 'https://xzzstest1.xuechebu.com/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
+// var jgid = 140001;
+var jgid = wx.getStorageSync('JGID');
+
 var app = getApp();
 var lineChart = null;
 var lineChart2 = null;
 var chartsArray = [];
 var dataSource = [];
+
+
+
 Page({
     data: {
       chartsList:[],
@@ -72,6 +77,10 @@ Page({
       var that = this
       var newData = this.createSimulationData;
       functions.fetchChartList(url, jgid, function(data){
+
+       console.log(url);
+       console.log(jgid);
+
         var infoArray = [];
         infoArray.push(
           {title:'报名人数',

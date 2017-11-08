@@ -145,7 +145,8 @@ Page({
         islogin: "1"
       },
       header: {
-        "Content-Type": "json",
+        "Content-Type": "json"
+      
       },
       success: function (res) {
         var data = res.data
@@ -192,8 +193,7 @@ Page({
     }else{
       wx.showToast({
         title: '请输入手机号！',
-        icon: 'success',
-        duration: 2000
+      
       })
       return false;
     }
@@ -246,21 +246,27 @@ Page({
      url: 'https://jptest2.xuechebu.com/UserCenter/UserInfo/LoginCode?',
      data: { username: that.data.inputMobileNumber,
            code: that.data.inputVcode,
+           usertype:'3',  
         },
 
     header: {
-       "Content-Type": "json",
+       "Content-Type": "json"
+      
      },
      success: function (res) {
        var data = res.data
+
        if (data.code == 0) {
+         //设置用户的数据
+        wx.setStorageSync("userInfo", data.data),
+        wx.setStorageSync('isLoginByPhone','true'),
+        wx.setStorageSync('APIURLIOS', data.data.APIURLIOS),
+        wx.setStorageSync('JGID', data.data.JGID)
+
          that.setData({
            mobile_login: true,
          })
-         wx.setStorage({
-           key: 'isPhonelogin',
-           data: 'true',
-         })
+        
         wx.switchTab({
          url: '../line/line'
          });
@@ -326,6 +332,16 @@ Page({
         });
       }
     }, 1000);
+  },
+
+  callPhone:function(){
+    var that = this;
+    wx.makePhoneCall({
+      phoneNumber: '4008686888',
+    })
+
+
   }
+
 
 });
