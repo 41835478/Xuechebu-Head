@@ -39,7 +39,12 @@
                     <view class="mobile-login-getvcode disable" disabled="true" bindtap="tapGetVcode">获取验证码</view>
                 </block>
                 <block wx:if="{{has_get_vcode == true}}">
-                    <view class="mobile-login-getvcode disable">重新获取({{vcodeGetTime}})</view>
+                   <block wx:if="{{vcodeGetTime > 0}}">
+                      <view class="mobile-login-getvcode disable">重新获取({{vcodeGetTime}})</view>
+                   </block>
+                   <block wx:else>
+                   <view class="mobile-login-getvcode disable">重新获取</view>
+                   </block>
                 </block>
                 </input>
                 
