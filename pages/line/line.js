@@ -3,7 +3,7 @@ var functions = require('../functions.js')
 var url = wx.getStorageSync('APIURLIOS') +'/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
 // var url = 'https://xzzstest1.xuechebu.com/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
 // var jgid = 140001;
-var jgid = wx.getStorageSync('JGID');
+// var jgid = wx.getStorageSync('JGID');
 
 var app = getApp();
 var lineChart = null;
@@ -76,6 +76,7 @@ Page({
     onLoad: function (e) {
       var that = this
       var newData = this.createSimulationData;
+      var jgid = wx.getStorageSync('JGID');
       functions.fetchChartList(url, jgid, function(data){
 
        console.log(url);

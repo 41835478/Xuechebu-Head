@@ -330,6 +330,10 @@ Page({
         that.setData({
           has_get_vcode: false
         });
+      } else {
+        that.setData({
+          has_get_vcode: true
+        });
       }
     }, 1000);
   },
