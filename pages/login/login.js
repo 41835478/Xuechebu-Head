@@ -332,6 +332,16 @@ Page({
         });
       }
     }, 1000);
+  },
+
+  callPhone:function(){
+    var that = this;
+    wx.makePhoneCall({
+      phoneNumber: '4008686888',
+    })
+
+
   }
+
 
 });
