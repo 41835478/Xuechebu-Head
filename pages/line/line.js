@@ -45,7 +45,7 @@ Page({
             data: info.data,
             color: info.color,
             format: function (val, name) {
-                return val.toFixed(0) + info.unit;
+                return val + info.unit;
             }
         }];
         lineChart.updateData({
@@ -75,7 +75,7 @@ Page({
         var infoArray = [];
         infoArray.push(
           {title:'报名人数',
-            num: data.data.enrollCount+'人'
+            num:  data.data.enrollCount+'人'
           }
         );
         infoArray.push(
@@ -87,7 +87,7 @@ Page({
         infoArray.push(
           {
             title: '收入',
-            num: '¥'+data.data.revenue+'万元'
+            num: (data.data.revenue/10000).toFixed(2)+'万元'
           }
         );
         var category1 = [];
@@ -133,7 +133,7 @@ Page({
       for (var i = 0; i < result2.length; i++) {
         var item = result2[i];
         category2.push(item.pdate);
-        data2.push(item.enrollnum);
+        data2.push((item.enrollnum/100).toFixed(2));
       }
       dataSource.push({
         categories: category2,
@@ -252,7 +252,7 @@ Page({
           name: info.Xdes,
           data: info.data,
           format: function (val, name) {
-            return val;
+            return val.toFixed(2);
           }
         }];
         chartsArray.push(new wxCharts({
