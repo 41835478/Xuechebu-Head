@@ -169,9 +169,9 @@ Page({
   },
   //tapMobileLoginSubmit
   tapMobileLoginSubmit: function (cal) {
-    wx.switchTab({
-      url: '../line/line'
-    });
+    // wx.switchTab({
+    //   url: '../line/line'
+    // });
 
     //获取vcode
     var that = this;
