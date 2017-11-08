@@ -7,9 +7,9 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "学车不-校长",
-    "backgroundColor": "#eeeeee",
+    "backgroundColor": "#1b8eef",
     "backgroundTextStyle": "light"
   },
   "tabBar": {

@@ -121,14 +121,13 @@ Page({
     //获取vcode
     var that = this;
     if (that.data.checkMobilePass) {
-      that._initVcodeTimer();
       //执行请求，获取vcode
       that.getVcode(function (data) {
-        if (data.vcode) {
-          that.setData({
-            inputVcode: data.vcode
-          })
-        }
+        // if (data.vcode) {
+        //   that.setData({
+        //     inputVcode: data.vcode
+        //   })
+        // }
       });
     } else {
       return false;
@@ -151,6 +150,7 @@ Page({
       success: function (res) {
         var data = res.data
         if (data.code==0){
+          that._initVcodeTimer();
           that.setData({
             has_get_vcode: true,
           })
@@ -158,7 +158,7 @@ Page({
         }else{
           wx.showToast({
             title: '获取验证码失败',
-            icon: fail,
+            icon: 'success',
             duration: 2000
           })
         }
@@ -183,7 +183,7 @@ Page({
       } else {
         wx.showToast({
           title: '请获取验证码！',
-          icon: 'fail',
+          icon: 'success',
           duration: 2000
         })
         return false;
@@ -192,7 +192,7 @@ Page({
     }else{
       wx.showToast({
         title: '请输入手机号！',
-        icon: 'failure',
+        icon: 'success',
         duration: 2000
       })
       return false;
@@ -265,6 +265,10 @@ Page({
          url: '../line/line'
          });
          
+       } else {
+         wx.showToast({
+           title: data.message,
+         })
        }
      }
    })
@@ -283,17 +287,26 @@ Page({
         inputMobileNumber: number
       });
     } else {
-      wx.showToast({
-        title: '请输入手机号',
-        icon: fail,
-        duration: 2000
-      })
-
       that.setData({
         checkMobilePass: false,
       });
     }
   },
+  getInputVcode:function(e) {
+    var that = this;
+    var number = e.detail.value;
+    if (number) {
+      that.setData({
+        has_get_vcode: true,
+        inputVcode: number
+      });
+    } else {
+      that.setData({
+        has_get_vcode: false,
+      });
+    }
+  }
+  ,
   _initVcodeTimer: function () {
     var that = this;
     var initTime = 60;

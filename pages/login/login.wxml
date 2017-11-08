@@ -31,7 +31,7 @@
                         <view class='line'></view>
 
             <view class="mobile-login-vcode">
-                <input name="vcode" type="text" placeholder="请输入验证码" value="{{inputVcode}}" maxlength="6">
+                <input name="vcode" type="text" placeholder="请输入验证码" bindinput='getInputVcode' value="{{inputVcode}}" maxlength="6">
                  <block wx:if="{{has_get_vcode != true && checkMobilePass == true}}">
                     <view class="mobile-login-getvcode" bindtap="tapGetVcode" >获取验证码</view>
                 </block>
