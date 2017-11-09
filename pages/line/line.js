@@ -64,7 +64,7 @@ Page({
               }
             },
             yAxis: {
-              title: info.Ydes,
+              // title: info.Ydes,
               format: function (val) {
                 return val.toFixed(0) + info.unit;
               },
@@ -133,7 +133,7 @@ Page({
           categories: category1,
           data: data1,
           title: '报名人数',
-          Ydes:'报名人数',
+          Ydes:'报名人数(人)',
           Xdes:'报名人数',
           unit: '',
           id:0,
@@ -143,7 +143,7 @@ Page({
       for (var i = 0; i < result2.length; i++) {
         var item = result2[i];
         category2.push(item.pdate);
-        data2.push((item.enrollnum/100).toFixed(2));
+        data2.push((item.enrollnum/10000).toFixed(2));
       }
       dataSource.push({
         categories: category2,
@@ -262,7 +262,7 @@ Page({
           name: info.Xdes,
           data: info.data,
           format: function (val, name) {
-            return val.toFixed(2);
+            return val;
           }
         }];
         chartsArray.push(new wxCharts({
@@ -281,7 +281,7 @@ Page({
             }
           },
           yAxis: {
-            title: info.Ydes,
+            // title: info.Ydes,
             format: function (val) {
               return val.toFixed(0);
             },
