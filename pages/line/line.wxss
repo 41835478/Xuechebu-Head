@@ -58,9 +58,9 @@
 .infoText {
   display: flex;
   align-self: center;
-  margin-top: 8px;
+  margin-top: 12px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   color: #333333;
 }
 .infoTitle {
@@ -68,7 +68,7 @@
   margin-top: 3px;
   align-self: center;
   color: #999999;
-  font-size: 14px;
+  font-size: 12px;
 }
 .space{
   display: flex;

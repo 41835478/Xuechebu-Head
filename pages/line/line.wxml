@@ -16,8 +16,8 @@
 <view class='space'></view>
 <scroll-view style="height: 100%;" scroll-y="true" class="chartList">
 <block wx:for="{{chartsList}}">
-<view class='chartItem'>
 <text class="chart-title">{{item.title}}</text>
+<view class='chartItem'>
  <canvas canvas-id="lineCanvas{{item.id}}" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas>
  <view class='space'></view>
  </view>

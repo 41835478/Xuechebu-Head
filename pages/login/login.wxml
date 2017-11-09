@@ -23,7 +23,7 @@
             <text class="agree-txt">《SuperWings用户协议》</text>
         </view>
     </block> -->
-
+    <view class='blank'></view>
         <view class="mobile-login-content">
             <view class="mobile-login-number">
                 <input name="phone" placeholder="请输入手机号" bindinput="checkMobileRegExp" value="{{inputMobileNumber}}" maxlength="11"/>
@@ -52,9 +52,9 @@
         </view>
         <view class='line'></view>
         <view class="mobile-login-submit" bindtap="tapMobileLoginSubmit">登录</view>
-        <view class="login-footer" bindtap='callPhone'>
+         <view class="login-footer" bindtap='callPhone'>
             <text>如您需要使用，请联系:</text>
             <text class="agree-txt">400-868-6888</text>
-        </view>
+        </view> 
 
 </view>

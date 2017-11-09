@@ -7,8 +7,9 @@
     /*align-items: center;*/
     /*justify-content: space-between;*/
     box-sizing: border-box;
-    background: #F5F5F5;
+    /* background: #F5F5F5; */
     font: menu;
+    background-color: white;
 }
 /* .login-header{
     position: relative;
@@ -17,6 +18,10 @@
     background-color: #21D2A9;
 } */
 
+.blank {
+  background-color: white;
+  height: 120rpx;
+}
 .login-header-bg {
     position: absolute;
     z-index: 9;
@@ -75,14 +80,16 @@
 /* 手机号登录框 */
 .mobile-login-content{
     width: 100%;
-    height: 200rpx;
+    height: 180rpx;
     background-color: #FFFFFF;
     box-sizing: border-box;
     font-size: 28rpx;
 }
 .mobile-login-content input{
+
     display: block;
-    width: 10rem;
+    margin-top: 15px;
+    /* width: 10rem; */
 }
 .mobile-login-number{
     position: relative;
@@ -92,14 +99,14 @@
     align-items: center;
     width: 80%;
     margin-left: 10%;
-    height: 100rpx;
+    height: 90rpx;
     box-sizing: border-box;
 }
 
 .mobile-login-vcode{
     display: flex;
     width: 60%;
-    height: 100rpx;
+    height: 90rpx;
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: center;
@@ -113,9 +120,9 @@ background-color: #333;
 }
 .mobile-login-getvcode{
     position: absolute;
-    top: 135rpx;
+    top: 230rpx;
     right: 12%;
-    background-color: #1ECFA7;
+    background-color: #44B46A;
     line-height: 56rpx;
     width: 240rpx;
     text-align: center;
@@ -128,20 +135,20 @@ background-color: #333;
 }
 .mobile-login-submit{
     width: 80%;
-    line-height: 65rpx;
-    background-color: #1ECFA7;
-    margin: 40rpx auto 24rpx auto;
+    line-height: 75rpx;
+    background-color: #44B46A;
+    margin: 60rpx auto 24rpx auto;
     text-align: center;
     border-radius: 10rpx;
     color: #FFFFFF;
 }
 /**/
 .login-footer{
-    margin-top: 99%;
     font-size: 30rpx;
     color: #9B9B9B;
+    margin-top: 94%;
     text-align: center;
 }
 .agree-txt{
-    color: #2DD1AC;
+    color: #44B46A;
 }
