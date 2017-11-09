@@ -74,6 +74,10 @@ Page({
        
     },
     onLoad: function (e) {
+      wx.showToast({
+        title: '加载中',
+        icon:'loading'
+      })
       var that = this
       var newData = this.createSimulationData;
       var jgid = wx.getStorageSync('JGID');
@@ -310,7 +314,7 @@ Page({
       that.updateData(chartsArray[5], dataSource[5]);
       that.updateData(chartsArray[6], dataSource[6]);
       that.updateData(chartsArray[7], dataSource[7]);
-
+      wx.hideToast();
    });
         var windowWidth = 320;
         try {
