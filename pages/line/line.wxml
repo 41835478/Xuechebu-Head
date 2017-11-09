@@ -1,5 +1,5 @@
 
-<text class='time-text'>今天是{{todayTime}},以下数据将为你实时更新</text>
+<text class='time-text'>今天是{{todayTime}},以下数据将为您实时更新</text>
 
 <view class='infoDetail' >
 <block wx:for="{{infoList}}">

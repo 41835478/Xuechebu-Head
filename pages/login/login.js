@@ -341,7 +341,7 @@ Page({
   callPhone:function(){
     var that = this;
     wx.makePhoneCall({
-      phoneNumber: '4008686888',
+      phoneNumber: '400-969-8088',
     })
 
 
