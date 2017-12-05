@@ -3,7 +3,8 @@
     "pages/main/index",
     "utils/tab/index",
     "pages/mine/mine",
-    "pages/line/line"      
+    "pages/line/line",
+    "pages/stuDetail/student"    
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
