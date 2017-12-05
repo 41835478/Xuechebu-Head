@@ -5,19 +5,13 @@ Page(Object.assign({}, Zan.Tab, {
     tab1: {
       list: [{
         id: 'all',
-        title: '全部'
+        title: '报名人数'
       }, {
         id: 'topay',
-        title: '待付款'
+        title: '退学人数'
       }, {
         id: 'tosend',
-        title: '待发货'
-      }, {
-        id: 'send',
-        title: '待收货'
-      }, {
-        id: 'sign',
-        title: '已完成'
+        title: '毕业人数'
       }],
       selectedId: 'all',
       scroll: false
