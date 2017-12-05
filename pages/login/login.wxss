@@ -144,14 +144,22 @@ background-color: #333;
 }
 /**/
 .login-footer{
-  display: flex;
-    font-size: 30rpx;
-    color: #9B9B9B;
-    text-align: center;
-     margin-top: 75%; 
-    justify-content: center;
-    align-items: baseline;
+    display: flex;  
+     position: fixed; 
+   bottom: 0;
+  left: 0;
+  right: 0;
+     align-self: center; 
+   align-items: center;  
+  justify-content: center; 
+  height: 50px; 
 }
+/* footer_fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
 .agree-txt{
     color: #44B46A;
 }

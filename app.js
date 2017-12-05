@@ -1,5 +1,8 @@
 //app.js
+let { WeToast } = require('src/wetoast.js')    // 返回构造函数，变量名可自定义
+
 App({
+  WeToast ,
   onLaunch: function() {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/logs/logs",
+    "pages/main/index",
+    "utils/tab/index",
     "pages/mine/mine",
     "pages/line/line"      
   ],
@@ -19,10 +19,10 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/line/line",
+        "pagePath": "pages/main/index",
         "iconPath": "image/sjfx_icon_g.png",
         "selectedIconPath": "image/sjfx_icon_b.png",
-        "text": "首页"
+        "text": "数据分析"
       },
       {
         "pagePath": "pages/mine/mine",

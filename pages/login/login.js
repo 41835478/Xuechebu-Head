@@ -1,5 +1,6 @@
 //获取应用实例
 var util = require('../../utils/util.js');
+
 var app = getApp();
 Page({
   data: {
@@ -272,8 +273,29 @@ Page({
          });
          
        } else {
-         wx.showToast({
+        //  wx.showModal({
+        //    title: data.message,
+        //    content: '',
+        //  })
+        //  wx.showToast({
+        //    title: data.message,
+        //  })
+         new app.WeToast()
+         that.wetoast.toast({
+           img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==',
+           imgClassName: 'my_wetoast_img',
+           imgMode: 'scaleToFill',
            title: data.message,
+           titleClassName: 'my_wetoast_title',
+           success(data) {
+             console.log(Date.now() + ': success')
+           },
+           fail(data) {
+             console.log(Date.now() + ': fail')
+           },
+           complete(data) {
+             console.log(Date.now() + ': complete')
+           }
          })
        }
      }

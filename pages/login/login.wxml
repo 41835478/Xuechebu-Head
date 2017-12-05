@@ -1,4 +1,6 @@
 <!--login.wxml-->
+<import src="../../src/wetoast.wxml"/>
+
 <view class="login_container">
     <!-- <view class="login-header">
         <image class="login-header-bg" src="images/img_login_bg.png"></image>
@@ -58,3 +60,5 @@
         </view> 
 
 </view>
+
+<template is="wetoast" data="{{...__wetoast__}}"/>

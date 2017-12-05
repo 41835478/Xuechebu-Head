@@ -1,12 +1,17 @@
 /**app.wxss**/
+@import "src/wetoast.wxss";
+@import "dist/index.wxss";
+
+@import "./style/layout.wxss";
+
 .container {
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333;
-  display: flex;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+page {
+    background-color: #F2f2f2;
 }
