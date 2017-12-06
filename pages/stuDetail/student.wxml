@@ -7,14 +7,20 @@
 
 <view class='tab-content'>
 
-    <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
+  <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
     <view class='dateChoice'>
        <block wx:for="{{dateArray}}">
          <button class="{{item.changeColor}}" data-date="{{item.date}}" bindtap="setDate">{{item.date}}
          </button>
        </block>
     </view>
-    </view> 
+
+    <view class='title1'>
+      <text class='text1'>数据统计</text>
+    </view>
+
+    
+  </view> 
 
 
 

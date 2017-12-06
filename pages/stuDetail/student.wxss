@@ -1,23 +1,39 @@
 
 .dateChoice {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 45px;
+  height: 40px;
   width: 100%;
   background-color: whitesmoke;
+  margin-top: 10px;
+  margin-left: 3%;
 }
 
 .selected {
+  display: inline-block;
   background-color: lightskyblue;
-  width: 20%;
-  height: 45px;
+  width: 23.5%;
+  height: 30px;
   color: white;
+  font-size: 13px;
 }
 
 .normal {
+  display: inline-block;
   background-color: gainsboro;
-  width: 20%;
-  height: 45px;
+  width: 23.5%;
+  height: 30px;
   color: #333333;
+  font-size: 13px;
+}
+
+.title1 {
+  margin-left: 3%;
+  background-color: lightskyblue;
+  height: 30px;
+  width: 80px;  
+  display: table;
+}
+.text1 {
+  font-size: 15px;
+  vertical-align: middle;
+  display: table-cell;
 }

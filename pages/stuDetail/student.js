@@ -46,6 +46,7 @@ Page(Object.assign({}, Zan.Tab, {
       [`${componentId}.selectedId`]: selectedId
     });
   },
+  
   setDate(e) {
     var that = this;
     var txtArray = [];
