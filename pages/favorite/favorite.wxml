@@ -2,7 +2,9 @@
     <view class="tab-header-item {{show == 'film_favorite' ? 'tab-header-active' : ''}}" data-type="film_favorite" bindtap="changeViewType">电影</view>
     <view class="tab-header-item {{show == 'person_favorite' ? 'tab-header-active' : ''}}" data-type="person_favorite" bindtap="changeViewType">人物</view>
 </view>
+
 <view class="tab-content">
+
     <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">
         <block wx:if="{{film_favorite.length == 0}}">
             <template is="nullTip" data="{{nullTip: nullTip}}"/>
@@ -34,6 +36,9 @@
             </block>
         </block>
     </view>
+
+
+
     <view class="tab-content-item" hidden="{{show == 'person_favorite' ? false : true}}">
         <block wx:if="{{person_favorite.length == 0}}">
             <template is="nullTip" data="{{nullTip: nullTip}}"/>

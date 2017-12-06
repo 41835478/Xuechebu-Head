@@ -1,0 +1,23 @@
+
+.dateChoice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 45px;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.selected {
+  background-color: lightskyblue;
+  width: 20%;
+  height: 45px;
+  color: white;
+}
+
+.normal {
+  background-color: gainsboro;
+  width: 20%;
+  height: 45px;
+  color: #333333;
+}

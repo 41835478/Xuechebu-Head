@@ -2,7 +2,7 @@
 <text class='time-text'>今天是{{todayTime}},以下数据将为您实时更新</text>
 
 <view class='infoDetail' >
-<block wx:for="{{infoList}}">
+    <block wx:for="{{infoList}}">
     <view class='infoItem'>
       <text class='infoText'>{{item.num}}</text>
       <text class='infoTitle'>{{item.title}}</text>
@@ -11,7 +11,7 @@
           <view class='line'></view>
       </block>
     </block>
-  </view>
+</view>
 
 <view class='space'></view>
 <scroll-view style="height: 100%;" scroll-y="true" class="chartList">

@@ -16,62 +16,48 @@ Page(Object.assign({}, Zan.Tab, {
       selectedId: 'all',
       scroll: false
     },
-    tab2: {
-      list: [{
-        id: '1',
-        title: '最新商品1'
-      }, {
-        id: '2',
-        title: '最新商品2'
-      }, {
-        id: '3',
-        title: '最新商品3'
-      }, {
-        id: '4',
-        title: '最新商品4'
-      }, {
-        id: '5',
-        title: '最新商品5'
-      }, {
-        id: '6',
-        title: '最新商品6'
-      }],
-      selectedId: '1',
-      scroll: true,
-      height: 45
-    },
-    tab3: {
-      list: [{
-        id: '1',
-        title: '商品1'
-      }, {
-        id: '2',
-        title: '商品2'
-      }, {
-        id: '3',
-        title: '商品3'
-      }, {
-        id: '4',
-        title: '商品4'
-      }, {
-        id: '5',
-        title: '商品5'
-      }, {
-        id: '6',
-        title: '商品6'
-      }],
-      selectedId: '1',
-      scroll: true,
-      height: 45
-    }
+    show:'film_favorite',
+    dateArray: [
+      {
+        date: '近七天',
+        changeColor: 'selected'
+      },
+      {
+        date: '近一个月',
+        changeColor: 'normal'
+      },
+      {
+        date: '近三个月',
+        changeColor: 'normal'
+      },
+      {
+        date: '本年度',
+        changeColor: 'normal'
+      }
+    ]
   },
 
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
 
-    this.setData({
+    this.setData({    show: 'film_favorite',
+
       [`${componentId}.selectedId`]: selectedId
+    });
+  },
+  setDate(e) {
+    var that = this;
+    var txtArray = [];
+    for (var i = 0; i < that.data.dateArray.length; i++) {
+      if (e.currentTarget.dataset.date == that.data.dateArray[i].date) {
+        txtArray.push({date:that.data.dateArray[i].date, changeColor:'selected'});
+      } else {
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal' });
+      }
+    }
+    that.setData({
+      dateArray:txtArray
     });
   }
 }));

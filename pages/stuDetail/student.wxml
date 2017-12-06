@@ -1,13 +1,25 @@
 <import src="/dist/tab/index.wxml" />
 
-<view class="container">
   <view>
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
-  <!-- <view style="margin: 20px 0">
-    <template is="zan-tab" data="{{tab: tab2, componentId: 'tab2'}}"></template>
-  </view>
-  <view style="margin: 20px 0">
-    <template is="zan-tab" data="{{tab: tab3, componentId: 'tab3'}}"></template>
-  </view> -->
-</view>
+
+
+<view class='tab-content'>
+
+    <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
+    <view class='dateChoice'>
+       <block wx:for="{{dateArray}}">
+         <button class="{{item.changeColor}}" data-date="{{item.date}}" bindtap="setDate">{{item.date}}
+         </button>
+       </block>
+    </view>
+    </view> 
+
+
+
+
+
+
+ </view> 
+  
