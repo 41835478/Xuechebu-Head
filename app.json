@@ -4,7 +4,8 @@
     "utils/tab/index",
     "pages/mine/mine",
     "pages/line/line",
-    "pages/stuDetail/student"    
+    "pages/stuDetail/student",
+    "pages/theory/theory"   
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",

@@ -19,10 +19,10 @@
     <view class="venues_box">
         <view class="venues_list">
             <block wx:for="{{venuesItems}}">
-                <view class="venues_item">
-                    <navigator url="../stuDetail/student?id={{item.id}}">
+                <view class="venues_item" data-id="{{item.menuName}}" bindtap='onNaviTo'>
+                    <!-- <navigator url="../stuDetail/student?id={{item.id}}"> -->
                         <image src="{{item.smallpic}}"/>
-                    </navigator>
+                    <!-- </navigator> -->
                 </view>
             </block>
         </view>

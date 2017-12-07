@@ -16,6 +16,23 @@ Page({
         //console.log(e.detail.current)
     },
 
+    onNaviTo: function(e) {
+      var pathArray = ['../stuDetail/student',
+        '../theory/theory',
+        '../stuDetail/student',
+        '../stuDetail/student',
+        '../stuDetail/student',
+        '../stuDetail/student',
+        '../stuDetail/student',
+        '../stuDetail/student'];
+        wx.navigateTo({
+          url: pathArray[e.currentTarget.dataset.id],
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+    },
+
     onLoad: function() {
         console.log('onLoad')
         var that = this
@@ -49,7 +66,8 @@ Page({
 
         var menuArray = [];
         for (var i = 0; i < 6; i++) {
-          menuArray.push({ smallpic: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png'})
+          menuArray.push({ smallpic: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png',
+          menuName:i})
         }
         that.setData({venuesItems : menuArray})
         

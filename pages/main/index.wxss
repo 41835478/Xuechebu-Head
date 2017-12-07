@@ -63,7 +63,7 @@ view.text text {
 }
 .choice_box .choice_list image {
     width: 100%;
-    height: 100px;
+    height: 80px;
 }
 
 .choice_box .choice_list .title {
