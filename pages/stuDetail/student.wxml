@@ -18,11 +18,12 @@
     <view class='title1'>
       <text class='text1'>图标统计</text>
     </view>
+    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas>
+
+    
     <view class='title1'>
       <text class='text1'>数据统计</text>
     </view>
-    
-    
     <view class='classifyTitle'>
       <block wx:for="{{classifyArray}}">
          <view class='classifyName'>{{item}}</view>

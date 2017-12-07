@@ -31,13 +31,6 @@ view.text:before {
     background-color: #09bb07;
 }
 
-.line_flag {
-    width: 3px;
-    height: 100%;
-    height: 15px;
-    display: inline-block;
-    background-color: #f9f027;
-}
 
 view.text text {
     margin-left: 10px;
@@ -93,11 +86,17 @@ view.text text {
 .infoDetail {
   margin-right: 10px;
 }
+
+.detialView {
+  display: flex;
+  justify-content: space-between;
+}
 .category {
   font-size: 13px;
   color: red;
+  align-self: center;
 }
 .date {
-  float: right;
   font-size: 13px;
+  align-self: center;
 }

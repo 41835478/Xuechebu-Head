@@ -1,4 +1,4 @@
-var wxCharts = require('../../utils/wxcharts.js');
+var wxCharts = require('../../utils/wxcharts.js')
 var functions = require('../functions.js')
 var url = wx.getStorageSync('APIURLIOS') +'/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';
 // var url = 'https://xzzstest1.xuechebu.com/CsxqSchoolmaster/statisticsdata/getSchoolStatisticsData';

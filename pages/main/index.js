@@ -95,7 +95,7 @@ Page({
         var newsArray = [];
         for (var i = 0; i < 4; i++) {
           newsArray.push({ smallpic: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png',
-          title:'中国十九大骗人伎俩有所提高,蒙混老百姓,官商勾结',
+          title:'大兴公寓着火事件以来,北漂生活更不易',
           category: "实时要闻",
           date: '2017-11-30'})
         }
