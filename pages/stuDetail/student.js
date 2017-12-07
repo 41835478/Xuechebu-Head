@@ -34,6 +34,11 @@ Page(Object.assign({}, Zan.Tab, {
         date: '本年度',
         changeColor: 'normal'
       }
+    ],
+    classifyArray:[
+      '报名时间',
+      '报名人数',
+      '数据变化'
     ]
   },
 

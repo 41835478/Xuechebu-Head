@@ -16,10 +16,28 @@
     </view>
 
     <view class='title1'>
+      <text class='text1'>图标统计</text>
+    </view>
+    <view class='title1'>
       <text class='text1'>数据统计</text>
     </view>
-
     
+    
+    <view class='classifyTitle'>
+      <block wx:for="{{classifyArray}}">
+         <view class='classifyName'>{{item}}</view>
+      </block>
+    </view>
+
+    <block wx:for="{{[1,2,3,4]}}">
+      <view class='recordView'>
+        <view class='recordText'>2017-10-13</view>
+        <view class='recordText'>25</view>
+        <view class='recordText'>→</view>
+      </view>
+      <view class='line'></view>
+    </block>
+
   </view> 
 
 
