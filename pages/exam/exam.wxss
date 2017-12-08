@@ -1,34 +1,28 @@
 
-.tab-content {
-  z-index: 1;
-}
-
 .dateChoice {
   height: 40px;
   width: 100%;
+  background-color: whitesmoke;
   margin-top: 10px;
   margin-left: 3%;
 }
 
 .selected {
-  display: inline-block; 
+  display: inline-block;
   background-color: lightskyblue;
   width: 23.5%;
   height: 30px;
   color: white;
-  align-self: center;
   font-size: 13px;
-  z-index: 1;
 }
 
 .normal {
-   display: inline-block; 
+  display: inline-block;
   background-color: gainsboro;
   width: 23.5%;
   height: 30px;
   color: #333333;
   font-size: 13px;
-  z-index: 1;
 }
 
 .title1 {
@@ -85,5 +79,4 @@
 .canvas{
   width: 96%;
   height: 200px;
-  z-index: 1;
 }

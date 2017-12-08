@@ -1,24 +1,21 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
 var lineChart = null;
-var seletedTab = '';
+
 Page(Object.assign({}, Zan.Tab, {
   data: {
     tab1: {
       list: [{
         id: 'all',
-        title: '报名人数'
+        title: '未读信件'
       }, {
         id: 'topay',
-        title: '退学人数'
-      }, {
-        id: 'tosend',
-        title: '毕业人数'
+        title: '已读信件'
       }],
       selectedId: 'all',
       scroll: false
     },
-    show:'film_favorite',
+    show: 'film_favorite',
     dateArray: [
       {
         date: '近七天',
@@ -37,7 +34,7 @@ Page(Object.assign({}, Zan.Tab, {
         changeColor: 'normal'
       }
     ],
-    classifyArray:[
+    classifyArray: [
       '报名时间',
       '报名人数',
       '数据变化'
@@ -47,25 +44,26 @@ Page(Object.assign({}, Zan.Tab, {
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
-    seletedTab = selectedId;
-    this.setData({    show: 'film_favorite',
+
+    this.setData({
+      show: 'film_favorite',
 
       [`${componentId}.selectedId`]: selectedId
     });
   },
-  
+
   setDate(e) {
     var that = this;
     var txtArray = [];
     for (var i = 0; i < that.data.dateArray.length; i++) {
       if (e.currentTarget.dataset.date == that.data.dateArray[i].date) {
-        txtArray.push({date:that.data.dateArray[i].date, changeColor:'selected'});
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected' });
       } else {
         txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal' });
       }
     }
     that.setData({
-      dateArray:txtArray
+      dateArray: txtArray
     });
   },
 
@@ -117,7 +115,7 @@ Page(Object.assign({}, Zan.Tab, {
       }
     });
   },
-  
+
   createSimulationData: function () {
     var categories = [];
     var data = [];

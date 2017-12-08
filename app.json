@@ -5,7 +5,8 @@
     "pages/mine/mine",
     "pages/line/line",
     "pages/stuDetail/student",
-    "pages/theory/theory"   
+    "pages/theory/theory",
+    "pages/mailBox/mail"   
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
