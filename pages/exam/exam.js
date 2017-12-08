@@ -21,26 +21,28 @@ Page(Object.assign({}, Zan.Tab, {
     show: 'film_favorite',
     dateArray: [
       {
-        date: '近七天',
+        date: '最近一天',
         changeColor: 'selected'
+      },
+      {
+        date: '近七天',
+        changeColor: 'normal'
       },
       {
         date: '近一个月',
         changeColor: 'normal'
-      },
-      {
-        date: '近三个月',
-        changeColor: 'normal'
-      },
-      {
-        date: '本年度',
-        changeColor: 'normal'
       }
     ],
     classifyArray: [
-      '报名时间',
-      '报名人数',
-      '数据变化'
+      '考试次数',
+      '通过人数',
+      '未通过人数'
+    ],
+    kemuArray:[
+      '科目一',
+      '科目二',
+      '科目三',
+      '科目四',
     ]
   },
 
@@ -103,7 +105,7 @@ Page(Object.assign({}, Zan.Tab, {
         disableGrid: true
       },
       yAxis: {
-        title: '成交金额 (万元)',
+        // title: '成交金额 (万元)',
         format: function (val) {
           return val.toFixed(2);
         },

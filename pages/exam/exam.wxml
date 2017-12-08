@@ -15,36 +15,33 @@
        </block>
     </view>
 
-    <view class='title1'>
+    <!-- <view class='title1'>
       <text class='text1'>图标统计</text>
     </view>
-    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas>
+    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas> -->
 
-    
-    <view class='title1'>
-      <text class='text1'>数据统计</text>
-    </view>
-    <view class='classifyTitle'>
-      <block wx:for="{{classifyArray}}">
-         <view class='classifyName'>{{item}}</view>
-      </block>
-    </view>
-
-    <block wx:for="{{[1,2,3,4]}}">
-      <view class='recordView'>
-        <view class='recordText'>2017-10-13</view>
-        <view class='recordText'>25</view>
-        <view class='recordText'>→</view>
-      </view>
-      <view class='line'></view>
+<block wx:for="{{kemuArray}}">
+  <view class='title1'>
+    <text class='text1'>{{item}}</text>
+  </view>
+  <view class='classifyTitle'>
+    <block wx:for="{{classifyArray}}">
+      <view class='classifyName'>{{item}}</view>
     </block>
+  </view>
+
+  <block wx:for="{{[1,2,3,4]}}">
+    <view class='recordView'>
+      <view class='recordText1'>1次</view>
+      <view class='recordText2'>188</view>
+      <view class='recordText3'>48</view>
+    </view>
+    <view class='line'></view>
+  </block>
+</block>
+    
 
   </view> 
-
-
-
-
-
 
  </view> 
   

@@ -20,7 +20,7 @@ Page({
       var pathArray = ['../stuDetail/student',
         '../theory/theory',
         '../training/train',
-        '../mailBox/mail',
+        '../exam/exam',
         '../stuDetail/student',
         '../stuDetail/student',
         '../stuDetail/student',

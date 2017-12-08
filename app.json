@@ -7,7 +7,8 @@
     "pages/stuDetail/student",
     "pages/theory/theory",
     "pages/mailBox/mail",
-    "pages/training/train"   
+    "pages/training/train"   ,
+    "pages/exam/exam"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
