@@ -1,25 +1,27 @@
 
+
 .dateChoice {
+  /* display: inline-block; */
+  text-align: center;
   height: 40px;
   width: 100%;
-  background-color: whitesmoke;
-  margin-top: 10px;
-  margin-left: 3%;
+  /* margin-top: 10px; */
+  /* margin-left: 3%; */
 }
 
 .selected {
-  display: inline-block;
+  display: inline-block; 
   background-color: lightskyblue;
-  width: 23.5%;
   height: 30px;
   color: white;
+  width: 23.5%; 
   font-size: 13px;
 }
 
 .normal {
-  display: inline-block;
+  display: inline-block; 
   background-color: gainsboro;
-  width: 23.5%;
+  width: 23.5%; 
   height: 30px;
   color: #333333;
   font-size: 13px;
@@ -37,8 +39,15 @@
   font-size: 15px;
   vertical-align: middle;
   display: table-cell;
+  color: white;
 }
 
+.cavasTitle {
+  text-align: center;
+  font-size: 16px;
+  font-style: bold;
+  color: skyblue;
+}
 .classifyTitle {
   display: flex;
   margin-left: 3%;
@@ -79,4 +88,15 @@
 .canvas{
   width: 96%;
   height: 200px;
+}
+
+.test {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.test1 {
+  width: 80px;
+  background-color: yellow;
 }

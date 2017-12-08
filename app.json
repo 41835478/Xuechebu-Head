@@ -6,7 +6,8 @@
     "pages/line/line",
     "pages/stuDetail/student",
     "pages/theory/theory",
-    "pages/mailBox/mail"   
+    "pages/mailBox/mail",
+    "pages/training/train"   
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",

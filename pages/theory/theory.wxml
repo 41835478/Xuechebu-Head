@@ -1,5 +1,7 @@
 <import src="/dist/tab/index.wxml" />
 
+<view class='container'>
+
   <view>
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
@@ -8,20 +10,27 @@
 <view class='tab-content'>
 
   <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
-    <view class='dateChoice'>
+  <!--选择项目-->
+    <!-- <view class='dateChoice'>
        <block wx:for="{{dateArray}}">
          <button class="{{item.changeColor}}" data-date="{{item.date}}" bindtap="setDate">{{item.date}}
          </button>
        </block>
-    </view>
+    </view> -->
 
+<!--图标  -->
+<block wx:for="{{kemuArray}}">
     <view class='title1'>
-      <text class='text1'>图标统计</text>
+          <text class='text1'>{{item.kemuName}}</text>
     </view>
-    <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas>
+    <view class='cavasTitle'>{{show == 'film_favorite' ? '满学时统计' : '满学时未约考统计'}}</view>
+    <canvas canvas-id="{{item.cavasId}}" disable-scroll="true" class="canvas" data-id="{{item.id}}">
+    </canvas>
+</block>
+    
 
     
-    <view class='title1'>
+    <!-- <view class='title1'>
       <text class='text1'>数据统计</text>
     </view>
     <view class='classifyTitle'>
@@ -37,14 +46,11 @@
         <view class='recordText'>→</view>
       </view>
       <view class='line'></view>
-    </block>
+    </block> -->
 
   </view> 
-
-
-
-
-
-
+ 
  </view> 
   
+
+</view>

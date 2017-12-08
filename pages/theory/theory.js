@@ -7,13 +7,10 @@ Page(Object.assign({}, Zan.Tab, {
     tab1: {
       list: [{
         id: 'all',
-        title: '报名人数'
+        title: '满学时统计'
       }, {
         id: 'topay',
-        title: '退学人数'
-      }, {
-        id: 'tosend',
-        title: '毕业人数'
+        title: '满学时未约考统计'
       }],
       selectedId: 'all',
       scroll: false
@@ -41,6 +38,16 @@ Page(Object.assign({}, Zan.Tab, {
       '报名时间',
       '报名人数',
       '数据变化'
+    ],
+    kemuArray: [
+      {
+        kemuName: '科目一',
+        cavasId: 'kemu1'
+      },
+      {
+        kemuName: '科目四',
+        cavasId: 'kemu4'
+      }
     ]
   },
 
@@ -79,44 +86,46 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    var simulationData = this.createSimulationData();
-    lineChart = new wxCharts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: simulationData.categories,
-      animation: true,
-      // background: '#f5f5f5',
-      series: [{
-        name: '成交量1',
-        data: simulationData.data,
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }, {
-        name: '成交量2',
-        data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(2);
+    for (var i = 0; i < this.data.kemuArray.length; i++) {
+      var simulationData = this.createSimulationData();
+      lineChart = new wxCharts({
+        canvasId: this.data.kemuArray[i].cavasId,
+        type: 'line',
+        categories: simulationData.categories,
+        animation: true,
+        // background: '#f5f5f5',
+        series: [{
+          name: '满学时人数',
+          data: simulationData.data,
+          format: function (val, name) {
+            return val.toFixed(2) + '万';
+          }
+        }, {
+            name: '满学时人数',
+          data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
+          format: function (val, name) {
+            return val.toFixed(2) + '万';
+          }
+        }],
+        xAxis: {
+          disableGrid: true
         },
-        min: 0
-      },
-      width: windowWidth,
-      height: 200,
-      dataLabel: false,
-      dataPointShape: true,
-      extra: {
-        lineStyle: 'curve'
-      }
-    });
+        yAxis: {
+          // title: '成交金额 (万元)',
+          format: function (val) {
+            return val.toFixed(2);
+          },
+          min: 0
+        },
+        width: windowWidth,
+        height: 200,
+        dataLabel: false,
+        dataPointShape: true,
+        extra: {
+          lineStyle: 'curve'
+        }
+      });
+    }
   },
 
   createSimulationData: function () {

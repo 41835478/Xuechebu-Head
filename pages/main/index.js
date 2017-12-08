@@ -19,7 +19,7 @@ Page({
     onNaviTo: function(e) {
       var pathArray = ['../stuDetail/student',
         '../theory/theory',
-        '../stuDetail/student',
+        '../training/train',
         '../mailBox/mail',
         '../stuDetail/student',
         '../stuDetail/student',

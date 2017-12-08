@@ -4,32 +4,33 @@
 }
 
 .dateChoice {
+  /* display: inline-block; */
+  text-align: center;
   height: 40px;
   width: 100%;
-  margin-top: 10px;
-  margin-left: 3%;
+  /* background-color: whitesmoke; */
+  /* margin-top: 10px; */
+  /* margin-left: 3%; */
 }
 
 .selected {
   display: inline-block; 
   background-color: lightskyblue;
-  width: 23.5%;
   height: 30px;
   color: white;
-  align-self: center;
+  width: 23.5%; 
   font-size: 13px;
-  z-index: 1;
 }
 
 .normal {
-   display: inline-block; 
+  display: inline-block; 
   background-color: gainsboro;
-  width: 23.5%;
+  width: 23.5%; 
   height: 30px;
   color: #333333;
   font-size: 13px;
-  z-index: 1;
 }
+
 
 .title1 {
   margin-left: 3%;
