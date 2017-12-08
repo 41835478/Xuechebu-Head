@@ -21,7 +21,7 @@ Page({
         '../theory/theory',
         '../training/train',
         '../exam/exam',
-        '../stuDetail/student',
+        '../finance/finance',
         '../stuDetail/student',
         '../stuDetail/student',
         '../stuDetail/student'];

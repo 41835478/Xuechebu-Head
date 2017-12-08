@@ -1,0 +1,90 @@
+
+.tab-content {
+  z-index: 1;
+}
+
+.dateChoice {
+  /* display: inline-block; */
+  text-align: center;
+  height: 40px;
+  width: 100%;
+  /* background-color: whitesmoke; */
+  /* margin-top: 10px; */
+  /* margin-left: 3%; */
+}
+
+.selected {
+  display: inline-block; 
+  background-color: lightskyblue;
+  height: 30px;
+  color: white;
+  width: 23.5%; 
+  font-size: 13px;
+}
+
+.normal {
+  display: inline-block; 
+  background-color: gainsboro;
+  width: 23.5%; 
+  height: 30px;
+  color: #333333;
+  font-size: 13px;
+}
+
+
+.title1 {
+  margin-left: 3%;
+  background-color: lightskyblue;
+  height: 30px;
+  width: 80px;  
+  display: table;
+  margin-bottom: 10px;
+}
+.text1 {
+  font-size: 15px;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.classifyTitle {
+  display: flex;
+  margin-left: 3%;
+  width: 94%;
+  justify-content: space-around;
+  height: 35px;
+  background-color: lightskyblue;
+}
+
+.classifyName {
+  font-size: 16px;
+  color: white;
+  align-self: center;
+}
+
+.recordView {
+  display: flex;
+  height: 40px;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.recordText {
+  font-size: 15px;
+  color: #333333;
+  width: 25%;
+  text-align: center;
+  vertical-align: middle;
+  align-self: center;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+.canvas{
+  width: 96%;
+  height: 200px;
+  z-index: 1;
+}
