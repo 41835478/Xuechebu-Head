@@ -8,7 +8,9 @@
     "pages/theory/theory",
     "pages/mailBox/mail",
     "pages/training/train",
-    "pages/finance/finance"
+    "pages/finance/finance",
+    "pages/exam/exam",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
@@ -27,13 +29,13 @@
         "pagePath": "pages/main/index",
         "iconPath": "image/sjfx_icon_g.png",
         "selectedIconPath": "image/sjfx_icon_b.png",
-        "text": "数据分析"
+        "text": "首页"
       },
       {
         "pagePath": "pages/mine/mine",
         "iconPath": "image/wode_icon_g.png",
         "selectedIconPath": "image/wode_icon_b.png",
-        "text": "我"
+        "text": "我的"
       }
     ]
   },

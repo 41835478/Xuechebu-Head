@@ -22,7 +22,7 @@ Page({
         '../training/train',
         '../exam/exam',
         '../finance/finance',
-        '../stuDetail/student',
+        '../mailBox/mail',
         '../stuDetail/student',
         '../stuDetail/student'];
         wx.navigateTo({
@@ -65,8 +65,9 @@ Page({
 
 
         var menuArray = [];
+  
         for (var i = 0; i < 6; i++) {
-          menuArray.push({ smallpic: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png',
+          menuArray.push({ smallpic: "/image/xzd_"+i+".png",
           menuName:i})
         }
         that.setData({venuesItems : menuArray})

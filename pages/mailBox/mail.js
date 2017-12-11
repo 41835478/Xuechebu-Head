@@ -68,6 +68,7 @@ Page(Object.assign({}, Zan.Tab, {
   },
 
   onLoad: function (e) {
+    var that = this;
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -114,6 +115,20 @@ Page(Object.assign({}, Zan.Tab, {
         lineStyle: 'curve'
       }
     });
+
+    var newsArray = [];
+    for (var i = 0; i < 10; i++) {
+      newsArray.push({
+        smallpic: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png',
+        title: '大兴公寓着火事件以来,北漂生活更不易',
+        category: "实时要闻",
+        date: '2017-11-30'
+      })
+    }
+    that.setData({
+      choiceItems: newsArray
+    })
+
   },
 
   createSimulationData: function () {

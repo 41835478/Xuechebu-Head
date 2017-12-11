@@ -4,8 +4,30 @@
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
 
+<view class="choice_box">
+        <view class="choice_list">
+            <block wx:for="{{choiceItems}}">
+                <navigator url="../details/index?id={{item.id}}">
+                    <view class="choice_item">
+                        <view class='imageView'>
+                          <image src="{{item.smallpic}}"></image>
+                        </view>
+                        <view class='infoDetail'>
+                          <text class='newsTitle'>{{item.title}}</text>
+                          <view class='detialView'>
+                            <text class='category'>{{item.category}}</text>
+                            <text class='date'>{{item.date}}</text>
+                          </view>
+                        </view>
 
-<view class='tab-content'>
+                        <!-- <image src="{{item.goodspics}}"/>
+                        <view class="title">{{item.title}}</view> -->
+                    </view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+<!-- <view class='tab-content'>
 
   <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
     <view class='dateChoice'>
@@ -46,5 +68,5 @@
 
 
 
- </view> 
+ </view>  -->
   
