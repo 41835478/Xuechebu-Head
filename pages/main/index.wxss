@@ -14,13 +14,22 @@ swiper-item image {
     height: 316.4rpx;
 }
 
-view.text {
+/* .line_flag {
+
+
+} */
+
+.text {
      padding: 10px 10px 10px 13rpx; 
     font-size: 15px;
     color: #656565;
+    justify-content: space-between;
+      display:  flex;
+  flex-direction: row;
 }
 
-view.text:before {
+
+.text:before {
     position: absolute;
     display: block;
     content: ' ';
@@ -35,6 +44,7 @@ view.text text {
   margin-left: 15px;
   line-height: 10px;
   font-weight: bold;
+  color: #F2f2f2;
 }
 
 .venues_box {
@@ -54,7 +64,7 @@ view.text text {
 }
 
 .choice_box {
-    padding: 0 10rpx;
+    padding: 0 16rpx;
 }
 .choice_box .choice_list .choice_item{
   display: flex;
@@ -62,7 +72,7 @@ view.text text {
    margin-bottom: 15px;
 }
 .choice_box .choice_list image {
-    width: 100%;
+   width: 107px;
     height: 80px;
 }
 
@@ -74,22 +84,35 @@ view.text text {
 }
 
 .imageView {
-  width: 30%;
   margin-right: 10px;
 }
 
+
+.infoDetail {
+  display: flex;
+  margin-right: 10px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .newsTitle {
+  display: -webkit-box;
+   -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
+    overflow: hidden;
+    text-overflow:ellipsis;
+  margin-top: 5px;
   margin-right: 10px;
   font-size: 14px;
 }
 
-.infoDetail {
-  margin-right: 10px;
-}
+
 
 .detialView {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 .category {
   font-size: 13px;
@@ -97,8 +120,10 @@ view.text text {
   align-self: center;
   border-radius:2px;
   border:1rpx solid red;
+
 }
 .date {
   font-size: 13px;
   align-self: center;
+
 }
