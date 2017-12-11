@@ -44,24 +44,24 @@ Page({
             })
         })
 
-        //sliderList
-        // wx.request({
-        //     url: 'http://huanqiuxiaozhen.com/wemall/slider/list',
-        //     method: 'GET',
-        //     data: {},
-        //     header: {
-        //         'Accept': 'application/json'
-        //     },
-        //     success: function(res) {
-        //         that.setData({
-        //             images: res.data
-        //         })
-        //     }
-        // })
-        var scrollArray = [];
-        scrollArray.push({ picurl:'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png'})
-        scrollArray.push({ picurl: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png'})
-        that.setData({images: scrollArray})
+        // sliderList
+        wx.request({
+          url: 'https://jptest2.xuechebu.com/ad/GetPageAdview_jucheyou',
+            method: 'GET',
+            data: {},
+            header: {
+                'Accept': 'application/json'
+            },
+            success: function(res) {
+                that.setData({
+                    images: res.data.data
+                })
+            }
+        })
+        // var scrollArray = [];
+        // scrollArray.push({ picurl:'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png'})
+        // scrollArray.push({ picurl: 'http://jptest5.xuechebu.com/upload/201710/17/201710171810562866.png'})
+        // that.setData({images: scrollArray})
 
 
         var menuArray = [];

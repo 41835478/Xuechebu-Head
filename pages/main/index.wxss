@@ -4,16 +4,18 @@
 
 .swiper_box {
     width: 100%;
+    height: 316.4rpx;
 }
 
 swiper-item image {
     width: 100%;
     display: inline-block;
     overflow: hidden;
+    height: 316.4rpx;
 }
 
 view.text {
-     padding: 10px 10px 10px 14rpx; 
+     padding: 10px 10px 10px 13rpx; 
     font-size: 15px;
     color: #656565;
 }
