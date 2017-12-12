@@ -7,15 +7,15 @@
   height: 100%;
 }
 .catView {
-  margin-top: 25px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .catImage {
   align-self: center;
-  width: 300px;
-  height: 423px;
+  width: 260px;
+  height: 366px;
 }
 
 .tip {
