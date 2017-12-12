@@ -10,7 +10,8 @@
     "pages/training/train",
     "pages/finance/finance",
     "pages/exam/exam",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/web/web"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",
@@ -27,8 +28,8 @@
     "list": [
       {
         "pagePath": "pages/main/index",
-        "iconPath": "image/sjfx_icon_g.png",
-        "selectedIconPath": "image/sjfx_icon_b.png",
+        "iconPath": "image/home_g.png",
+        "selectedIconPath": "image/home_b.png",
         "text": "首页"
       },
       {

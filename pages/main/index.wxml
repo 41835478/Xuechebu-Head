@@ -33,15 +33,19 @@
            <text class='section'>驾培新闻</text>
         </view>
 
-        <view class='moreView' style='padding-top:5px;' bindtap='moreClick'>
-           <text class='moreTxt' style='font-size:16px; color: #666;'>更多</text>
+        <view class='moreView' style='padding-top:6px;' bindtap='moreClick'>
+        <navigator url="../web/web?id=0">
+           <text class='moreTxt' style='font-size:16px; color: #666;'>更多 </text>
+           <image class='rightArrow' src='/image/right_arrow.png'></image>
+         </navigator>
         </view>
     </view>
-
+    
+    <!--新闻跳转网页  -->
     <view class="choice_box">
         <view class="choice_list">
             <block wx:for="{{choiceItems}}">
-                <navigator url="../details/index?id={{item.id}}">
+                <navigator url="../web/web?id={{item.Id}}">
                     <view class="choice_item">
                         <view class='imageView'>
                           <image src="{{item.IMGURL}}"></image>
@@ -53,10 +57,8 @@
                             <text class='date'>{{item.CREATEDATESTR}}</text>
                           </view>
                         </view>
-
-                        <!-- <image src="{{item.goodspics}}"/>
-                        <view class="title">{{item.title}}</view> -->
                     </view>
+                    <view class='line'></view>
                 </navigator>
             </block>
         </view>
