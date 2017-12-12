@@ -28,7 +28,7 @@ swiper-item image {
 } */
 
 .text {
-     padding: 10px 10px 10px 13rpx; 
+     padding: 10px 10px 3px 13rpx; 
     font-size: 15px;
     color: #656565;
     justify-content: space-between;

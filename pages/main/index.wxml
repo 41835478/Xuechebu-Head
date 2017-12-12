@@ -35,7 +35,7 @@
 
         <view class='moreView' style='padding-top:6px;' bindtap='moreClick'>
         <navigator url="../web/web?id=0">
-           <text class='moreTxt' style='font-size:16px; color: #666;'>更多 </text>
+           <text class='moreTxt' style='font-size:16px; color: #666666;'>更多 </text>
            <image class='rightArrow' src='/image/right_arrow.png'></image>
          </navigator>
         </view>
