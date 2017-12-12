@@ -68,7 +68,7 @@ view.text text {
 
 .venues_item image{
     width: 100%;
-    height: 90px;
+    height: 166rpx;
 }
 
 .choice_box {
