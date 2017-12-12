@@ -1,0 +1,12 @@
+<!--pages/book/book.wxml-->
+<view class='back'>
+  <view class='catView'>
+    <image class='catImage' src='/image/cat_back.png'></image>
+    <view class='tip'>更多功能正在火热开发中...</view>
+  </view>
+  <view class='bottomView'>
+    <view class='line'></view>
+    <view class='text'>敬请期待!</view>
+    <view class='line'></view>
+  </view>
+</view>

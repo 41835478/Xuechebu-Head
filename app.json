@@ -11,7 +11,8 @@
     "pages/finance/finance",
     "pages/exam/exam",
     "pages/login/login",
-    "pages/web/web"
+    "pages/web/web",
+    "pages/developing/dev"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1b8eef",

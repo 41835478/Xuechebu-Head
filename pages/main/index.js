@@ -24,7 +24,7 @@ Page({
         '../training/train',
         '../exam/exam',
         '../finance/finance',
-        '../mailBox/mail',
+        '../developing/dev',
         '../stuDetail/student',
         '../stuDetail/student'];
         wx.navigateTo({

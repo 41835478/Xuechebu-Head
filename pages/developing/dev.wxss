@@ -1,0 +1,48 @@
+/* pages/book/book.wxss */
+.back {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+}
+.catView {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.catImage {
+  align-self: center;
+  width: 300px;
+  height: 423px;
+}
+
+.tip {
+  font-size: 18px;
+  color: #666666;
+  text-align: left;
+  align-self: center;
+}
+
+.bottomView {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.line {
+  margin-top: 13px;
+  background-color: #f2f2f2;
+  width: 30%;
+  height:0.5px;
+}
+
+.text {
+  font-size: 17px;
+  color: #666666;
+  width: 20%;
+}
