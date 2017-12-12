@@ -62,8 +62,8 @@ view.text text {
 
 .venues_item {
     display: inline-block;
-    width: 32.3%;
-    margin: 0 0.5%;
+    width: 31.3%;
+    margin: 0 1% 1% 1%;
 }
 
 .venues_item image{
@@ -72,7 +72,7 @@ view.text text {
 }
 
 .choice_box {
-    padding: 0 16rpx;
+    padding: 0 18rpx;
 }
 .choice_box .choice_list .choice_item{
   display: flex;
