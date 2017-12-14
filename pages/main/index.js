@@ -96,7 +96,7 @@ Page({
 
         //choiceList
         wx.request({
-          url: 'https://jptest4.xuechebu.com/api/Information/GetInformationList?flid=490&pIndex=1&pSize=100',
+          url: 'https://jptest4.xuechebu.com/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=7',
             method: 'GET',
             data: {},
             header: {

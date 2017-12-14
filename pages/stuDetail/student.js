@@ -3,6 +3,7 @@ var wxCharts = require('../../utils/wxcharts.js');
 var lineChart = null;
 var seletedTab = '1'; //查询学生类型1表示报名学员 2表示退学学员  3表示毕业学员
 var dateTab = '1'; //1表示七天的 2表示一个月 3表示三个月 4表示本年度
+
 Page(Object.assign({}, Zan.Tab, {
   data: {
     tab1: {
@@ -49,7 +50,7 @@ Page(Object.assign({}, Zan.Tab, {
     ]
   },
 
-//选择分类事件
+//选择分类事件 - 重绘表格
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
@@ -60,7 +61,7 @@ Page(Object.assign({}, Zan.Tab, {
     });
   },
   
-//选择日期事件
+//选择日期事件 - 更新表格
   setDate(e) {
     var that = this;
     var txtArray = [];
@@ -86,47 +87,47 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    this.loadData();
+    this.loadData(true);
     //请求报名人数数据
 
-    var simulationData = this.createSimulationData();
-    lineChart = new wxCharts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: simulationData.categories,
-      animation: true,
-      // background: '#f5f5f5',
-      series: [{
-        name: '成交量1',
-        data: simulationData.data,
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }, {
-        name: '成交量2',
-        data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 200,
-      dataLabel: false,
-      dataPointShape: true,
-      extra: {
-        lineStyle: 'curve'
-      }
-    });
+    // var simulationData = this.createSimulationData();
+    // lineChart = new wxCharts({
+    //   canvasId: 'lineCanvas',
+    //   type: 'line',
+    //   categories: simulationData.categories,
+    //   animation: true,
+    //   // background: '#f5f5f5',
+    //   series: [{
+    //     name: '成交量1',
+    //     data: simulationData.data,
+    //     format: function (val, name) {
+    //       return val.toFixed(2) + '万';
+    //     }
+    //   }, {
+    //     name: '成交量2',
+    //     data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
+    //     format: function (val, name) {
+    //       return val.toFixed(2) + '万';
+    //     }
+    //   }],
+    //   xAxis: {
+    //     disableGrid: true
+    //   },
+    //   yAxis: {
+    //     title: '成交金额 (万元)',
+    //     format: function (val) {
+    //       return val.toFixed(2);
+    //     },
+    //     min: 0
+    //   },
+    //   width: windowWidth,
+    //   height: 200,
+    //   dataLabel: false,
+    //   dataPointShape: true,
+    //   extra: {
+    //     lineStyle: 'curve'
+    //   }
+    // });
   },
   
   createSimulationData: function () {
@@ -143,10 +144,10 @@ Page(Object.assign({}, Zan.Tab, {
     }
   },
 
-  loadData:function() {
+  loadData:function(changeTab) {
     var that = this;
     wx.request({
-      url: 'https://xzzstest1.xuechebu.com/SchoolMaster/statisticsdata/getSchoolStatisticsData',
+      url: getApp().globalData.schoolURL +'/SchoolMaster/statisticsdata/getSchoolStatisticsData',
       method: 'GET',
       data: {
         jgid: '14001',
@@ -158,8 +159,81 @@ Page(Object.assign({}, Zan.Tab, {
       },
       success: function (res) {
         that.setData({ dataSource: res.data })
+        if (changeTab) {
+          that.createChart(res.data);
+        } else {
+        }
       }
     })
-  }
+  },
 
+  //新建表
+  createChart:function(data) {
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    var category = this.getCategory(data);
+    var data = this.getChartData(data);
+
+    //新建表
+    lineChart = new wxCharts({
+      canvasId: 'lineCanvas',
+      type: 'line',
+      categories: category,
+      animation: true,
+      // background: '#f5f5f5',
+      series: [{
+        name: '报名人数',
+        data: data,
+        format: function (val, name) {
+          return val.toFixed(0);
+        }
+      }],
+      xAxis: {
+        disableGrid: true,
+        title: '报名人数',
+        format: function (val) {
+          return val.toFixed(0);
+        }
+      },
+      yAxis: {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return val.toFixed(0);
+        },
+        min: 0
+      },
+      width: windowWidth,
+      height: 200,
+      dataLabel: true,
+      dataPointShape: false,
+      extra: {
+        lineStyle: 'curve'
+      }
+    });
+  },
+  updateChart:function(data) {
+    //更新表
+  },
+
+  //获取图标 横轴数据
+  getCategory: function(data) {
+    var category = [];
+    for (var i = 0; i < data.data.length; i++) {
+      category.push(data.data[i].pdate);
+    }
+    return category;
+  },
+  //获取图标的 纵轴数据
+  getChartData: function(data) {
+    var chartData = [];
+    for (var i = 0; i < data.data.length; i++) {
+      chartData.push(data.data[i].enrollnum);
+    }
+    return chartData;
+  }
 }));

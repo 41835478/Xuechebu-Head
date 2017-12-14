@@ -27,6 +27,12 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    imgaeURL: 'https://jptest2.xuechebu.com',
+    webURL: 'https//:jptest4.xuechebu.com',
+    schoolURL: 'https://xzzstest1.xuechebu.com'
+    // imgaeURL: 'https://api.xuechebu.com',
+    // webURL: 'http://xcbapi.xuechebu.com',
+    // schoolURL: 'https://xzzstest1.xuechebu.com'
   }
 })

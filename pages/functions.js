@@ -1,5 +1,9 @@
 var store = require('./store.js')
 var config = require('./config.js')
+var imageURL = getApp().globalData.imageURL; 
+var webURL = getApp().globalData.webURL; 
+var schoolURL = getApp().globalData.schoolURL;
+
 module.exports = {
   getLocation: function (cb) {
     var location = store.location
