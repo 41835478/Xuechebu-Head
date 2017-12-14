@@ -158,7 +158,7 @@ Page(Object.assign({}, Zan.Tab, {
         "Content-Type": "json",
       },
       success: function (res) {
-        that.setData({ dataSource: res.data })
+        that.setData({ dataSource: res.data.data })//设置数据源
         if (changeTab) {
           that.createChart(res.data);
         } else {
@@ -227,6 +227,7 @@ Page(Object.assign({}, Zan.Tab, {
       category.push(data.data[i].pdate);
     }
     return category;
+
   },
   //获取图标的 纵轴数据
   getChartData: function(data) {
@@ -234,6 +235,7 @@ Page(Object.assign({}, Zan.Tab, {
     for (var i = 0; i < data.data.length; i++) {
       chartData.push(data.data[i].enrollnum);
     }
+
     return chartData;
   }
 }));
