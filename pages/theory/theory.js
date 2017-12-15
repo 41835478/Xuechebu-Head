@@ -1,15 +1,17 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
 var lineChart = null;
+var chartArray = [];
+var seletedTab = '1'; //1表示查询空车率 2表示查询预约学员
 
 Page(Object.assign({}, Zan.Tab, {
   data: {
     tab1: {
       list: [{
-        id: 'all',
+        id: '1',
         title: '满学时统计'
       }, {
-        id: 'topay',
+        id: '2',
         title: '满学时未约考统计'
       }],
       selectedId: 'all',
@@ -42,24 +44,44 @@ Page(Object.assign({}, Zan.Tab, {
     kemuArray: [
       {
         kemuName: '科目一',
-        cavasId: 'kemu1'
+        cavasId: 'kemu2',
+        id: 0
       },
       {
         kemuName: '科目四',
-        cavasId: 'kemu4'
+        cavasId: 'kemu3',
+        id: 1
       }
     ]
   },
-
+  touchHandler: function (e) {
+    var newChart = chartArray[e.target.dataset.id];
+    newChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    var newChart = chartArray[e.target.dataset.id];
+    newChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    var newChart = chartArray[e.target.dataset.id];
+    newChart.scrollEnd(e);
+  },
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
-
+    seletedTab = selectedId;
+    var show = 'film_favorite';
+    if (seletedTab == '1') {
+      var show = 'film_favorite';
+    } else {
+      var show = 'film';
+    }
     this.setData({
-      show: 'film_favorite',
+      show: show,
 
       [`${componentId}.selectedId`]: selectedId
     });
+    this.loadData();
   },
 
   setDate(e) {
@@ -77,7 +99,89 @@ Page(Object.assign({}, Zan.Tab, {
     });
   },
 
-  onLoad: function (e) {
+  loadData: function () {
+    var that = this;
+    wx.request({
+      url: getApp().globalData.schoolURL + '/SchoolMaster/theoryperiod/getFullXueShi',
+      method: 'GET',
+      data: {
+        jgid: '140001',
+        type: seletedTab
+      },
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        that.setData({ dataSource: res.data.data })//设置数据源
+        that.createChartWithData(res.data);
+      }
+    })
+  },
+
+  //新建表
+  createChartWithData: function (data) {
+    var category = [];
+    var allData = [];
+
+    var category1 = [];
+    var data1 = [];
+    var category2 = [];
+    var data2 = [];
+    var result1;
+    var result2;
+    var title = '';
+
+    if (seletedTab == '1') {
+      result1 = data.data.kemu1StudentNum;//科二训练空车率
+      result2 = data.data.kemu4StudentNum;//科三训练空车率
+      title = '满学时统计';
+      for (var i = 0; i < result1.length; i++) {
+        var item = result1[i];
+        category1.push(item.pdate);
+        data1.push(item.enrollnum);
+      }
+      for (var i = 0; i < result2.length; i++) {
+        var item = result2[i];
+        category2.push(item.pdate);
+        data2.push(item.enrollnum);
+      }
+    } else if (seletedTab == '2') {
+      result1 = data.data.kemu2XunLian;//科二车辆预约
+      result2 = data.data.kemu3XunLian;//科三车辆预约
+      title = '满学时未约考统计';
+      if (!result1.length) {
+        category1.push('暂无数据');
+        data1.push(0);
+        category2.push('暂无数据');
+        data2.push(0);
+      } else {
+        for (var i = 0; i < result1.length; i++) {
+          var item = result1[i];
+          category1.push(item.pdate);
+          data1.push(item.enrollnum);
+        }
+        for (var i = 0; i < result2.length; i++) {
+          var item = result2[i];
+          category2.push(item.pdate);
+          data2.push(item.enrollnum);
+        }
+      }
+    }
+    if (!result1.length) {
+      for (var i = 0; i < result1.length; i++) {
+        var item = result1[i];
+        category1.push(item.pdate);
+        data1.push(item.percentnum);
+      }
+      for (var i = 0; i < result2.length; i++) {
+        var item = result2[i];
+        category2.push(item.pdate);
+        data2.push(item.percentnum);
+      }
+    }
+    category = [category1, category2];
+    allData = [data1, data2];
+
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -86,60 +190,67 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    for (var i = 0; i < this.data.kemuArray.length; i++) {
-      var simulationData = this.createSimulationData();
-      lineChart = new wxCharts({
-        canvasId: this.data.kemuArray[i].cavasId,
-        type: 'line',
-        categories: simulationData.categories,
-        animation: true,
-        // background: '#f5f5f5',
-        series: [{
-          name: '满学时人数',
-          data: simulationData.data,
-          format: function (val, name) {
-            return val.toFixed(2) + '万';
-          }
-        }, {
-            name: '满学时人数',
-          data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-          format: function (val, name) {
-            return val.toFixed(2) + '万';
-          }
-        }],
-        xAxis: {
-          disableGrid: true
-        },
-        yAxis: {
-          // title: '成交金额 (万元)',
-          format: function (val) {
-            return val.toFixed(2);
+    if (!chartArray.length) {
+      for (var i = 0; i < this.data.kemuArray.length; i++) {
+        var chartLine = new wxCharts({
+          canvasId: this.data.kemuArray[i].cavasId,
+          type: 'line',
+          categories: category[i],
+          animation: true,
+          // background: '#f5f5f5',
+          series: [{
+            name: this.data.kemuArray[i].kemuName + title,
+            data: allData[i],
+            format: function (val, name) {
+              return val;
+            }
+          }],
+          xAxis: {
+            disableGrid: true
           },
-          min: 0
-        },
-        width: windowWidth,
-        height: 200,
-        dataLabel: false,
-        dataPointShape: true,
-        extra: {
-          lineStyle: 'curve'
-        }
-      });
+          yAxis: {
+            // title: '成交金额 (万元)',
+            format: function (val) {
+              return val.toFixed(0);
+            },
+            min: 0
+          },
+          width: windowWidth,
+          height: 200,
+          dataLabel: false,
+          dataPointShape: true,
+          enableScroll: true,
+          extra: {
+            lineStyle: 'curve'
+          }
+        });
+        chartArray.push(chartLine);
+      }
+    } else {
+      for (var i = 0; i < this.data.kemuArray.length; i++) {
+        var chartLine = chartArray[i];
+        var series = [{
+          name: this.data.kemuArray[i].kemuName + title,
+          data: allData[i],
+          format: function (val, name) {
+            return val.toFixed(0);
+          }
+        }];
+        chartLine.updateData({
+          categories: category[i],
+          series: series,
+        });
+      }
     }
+
+
+    // this.setData({kemuArray:this.data.kemuArray})
   },
 
-  createSimulationData: function () {
-    var categories = [];
-    var data = [];
-    for (var i = 0; i < 10; i++) {
-      categories.push('2016-' + (i + 1));
-      data.push(Math.random() * (20 - 10) + 10);
-    }
-    // data[4] = null;
-    return {
-      categories: categories,
-      data: data
-    }
-  }
+  onLoad: function (e) {
+    seletedTab = '1';
+    chartArray = [];
+    this.loadData();
+  },
 
 }));
