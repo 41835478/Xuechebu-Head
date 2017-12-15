@@ -14,7 +14,7 @@
 
 .selected {
   display: inline-block; 
-  background-color: lightskyblue;
+  background-color: #1b8eef;
   height: 30px;
   color: white;
   width: 31.3%; 
@@ -28,29 +28,6 @@
   height: 30px;
   color: #333333;
   font-size: 13px;
-}
-
-.title1 {
-  margin-left: 3%;
-  background-color: lightskyblue;
-  height: 30px;
-  width: 80px;  
-  display: table;
-  margin-bottom: 10px;
-}
-.text1 {
-  font-size: 15px;
-  vertical-align: middle;
-  display: table-cell;
-}
-
-.classifyTitle {
-  display: flex;
-  margin-left: 3%;
-  width: 94%;
-  justify-content: space-around;
-  height: 35px;
-  background-color: lightskyblue;
 }
 
 .classifyName {

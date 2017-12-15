@@ -14,7 +14,7 @@ Page(Object.assign({}, Zan.Tab, {
         id: '2',
         title: '车辆预约'
       }],
-      selectedId: 'all',
+      selectedId: '1',
       scroll: false
     },
     show: 'film_favorite',
