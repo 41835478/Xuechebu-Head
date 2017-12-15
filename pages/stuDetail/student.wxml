@@ -39,13 +39,13 @@
         <view class='recordText'>{{item.pdate}}</view>
         <view class='recordText'>{{item.enrollnum}}</view>
         <block wx:if="{{item.isRise==0}}">
-             <view class='recordText'>→</view>
+             <view style='color:#333;' class='recordText'>→</view>
         </block>
         <block wx:if="{{item.isRise==1}}">
-             <view class='recordText'>↑</view>
+             <view style='color:red;' class='recordText'>↑</view>
         </block>
         <block wx:if="{{item.isRise==-1}}">
-             <view class='recordText'>↓</view>
+             <view style='color:green;' class='recordText'>↓</view>
         </block>
       </view>
       <view class='line'></view>

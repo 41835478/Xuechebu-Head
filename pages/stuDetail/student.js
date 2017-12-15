@@ -3,6 +3,7 @@ var wxCharts = require('../../utils/wxcharts.js');
 var lineChart = null;
 var seletedTab = '1'; //查询学生类型1表示报名学员 2表示退学学员  3表示毕业学员
 var dateTab = '1'; //1表示七天的 2表示一个月 3表示三个月 4表示本年度
+var jgid = wx.getStorageSync('JGID');
 
 Page(Object.assign({}, Zan.Tab, {
   data: {
@@ -55,8 +56,33 @@ Page(Object.assign({}, Zan.Tab, {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
     seletedTab = selectedId;
-    this.setData({    show: 'film_favorite',
-
+    if (selectedId == '1') {
+      this.setData({
+      classifyArray: [
+        '报名时间',
+        '报名人数',
+        '数据变化'
+        ]
+      })
+    } else if(selectedId == '2') {
+      this.setData({
+        classifyArray: [
+          '退学时间',
+          '退学人数',
+          '数据变化'
+        ]
+      })
+    } else if(selectedId == '3') {
+      this.setData({
+        classifyArray: [
+          '毕业时间',
+          '毕业人数',
+          '数据变化'
+        ]
+      })
+    }
+    this.setData({    
+      show: 'film_favorite',
       [`${componentId}.selectedId`]: selectedId
     });
   },
@@ -68,17 +94,21 @@ Page(Object.assign({}, Zan.Tab, {
     for (var i = 0; i < that.data.dateArray.length; i++) {
       if (e.currentTarget.dataset.date == that.data.dateArray[i].date) {
         dateTab = that.data.dateArray[i].id;//记录选择的日期
-        txtArray.push({date:that.data.dateArray[i].date, changeColor:'selected'});
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected', id: that.data.dateArray[i].id});
       } else {
-        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal' });
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal', id:that.data.dateArray[i].id });
       }
     }
+    //刷新日期选择状态
     that.setData({
       dateArray:txtArray
     });
+    this.loadData(false);
   },
 
   onLoad: function (e) {
+    seletedTab = '1';
+    dateTab = '1';
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -87,47 +117,8 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    this.loadData(true);
+    this.loadData(true);//新建表
     //请求报名人数数据
-
-    // var simulationData = this.createSimulationData();
-    // lineChart = new wxCharts({
-    //   canvasId: 'lineCanvas',
-    //   type: 'line',
-    //   categories: simulationData.categories,
-    //   animation: true,
-    //   // background: '#f5f5f5',
-    //   series: [{
-    //     name: '成交量1',
-    //     data: simulationData.data,
-    //     format: function (val, name) {
-    //       return val.toFixed(2) + '万';
-    //     }
-    //   }, {
-    //     name: '成交量2',
-    //     data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-    //     format: function (val, name) {
-    //       return val.toFixed(2) + '万';
-    //     }
-    //   }],
-    //   xAxis: {
-    //     disableGrid: true
-    //   },
-    //   yAxis: {
-    //     title: '成交金额 (万元)',
-    //     format: function (val) {
-    //       return val.toFixed(2);
-    //     },
-    //     min: 0
-    //   },
-    //   width: windowWidth,
-    //   height: 200,
-    //   dataLabel: false,
-    //   dataPointShape: true,
-    //   extra: {
-    //     lineStyle: 'curve'
-    //   }
-    // });
   },
   
   createSimulationData: function () {
@@ -160,8 +151,9 @@ Page(Object.assign({}, Zan.Tab, {
       success: function (res) {
         that.setData({ dataSource: res.data.data })//设置数据源
         if (changeTab) {
-          that.createChart(res.data);
+          that.createChart(res.data);//创建图表
         } else {
+          that.updateChart(res.data);//更新图表
         }
       }
     })
@@ -218,6 +210,28 @@ Page(Object.assign({}, Zan.Tab, {
   },
   updateChart:function(data) {
     //更新表
+ 
+    var category = this.getCategory(data);
+    var data = this.getChartData(data);
+    var title = '';
+    if (seletedTab == '1') {
+      title = '报名人数';
+    } else if (seletedTab == '2') {
+      title = '退学人数';
+    } else if (seletedTab == '3') {
+      title = '毕业人数';
+    }
+    var series = [{
+      name: title,
+      data: data,
+      format: function (val, name) {
+        return val;
+      }
+    }];
+    lineChart.updateData({
+      categories: category,
+      series: series
+    });
   },
 
   //获取图标 横轴数据
