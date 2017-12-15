@@ -203,6 +203,7 @@ Page(Object.assign({}, Zan.Tab, {
     } else if (seletedTab == '3') {
       title = '毕业人数';
     }
+
     //新建表
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
@@ -265,9 +266,18 @@ Page(Object.assign({}, Zan.Tab, {
         return val;
       }
     }];
+    //设置滚动
+    var scroll = false;
+    if (dateTab == '1') {
+      scroll = false;
+    } else {
+      scroll = true;
+    }
+
     lineChart.updateData({
       categories: category,
-      series: series
+      series: series, 
+      enableScroll:scroll
     });
   },
 
