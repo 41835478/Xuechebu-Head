@@ -50,9 +50,32 @@ Page(Object.assign({}, Zan.Tab, {
       '数据变化'
     ]
   },
-
+  touchHandler: function (e) {
+    lineChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    lineChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    lineChart.scrollEnd(e);
+  },
 //选择分类事件 - 重绘表格
   handleZanTabChange(e) {
+    //重置日期,默认选择近七天
+    var that = this;
+    var txtArray = [];
+    for (var i = 0; i < this.data.dateArray.length; i++) {
+      if ('近七天' == that.data.dateArray[i].date) {
+        dateTab = that.data.dateArray[i].id;//记录选择的日期
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected', id: that.data.dateArray[i].id });
+      } else {
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal', id: that.data.dateArray[i].id });
+      }
+    }
+    //刷新日期选择状态
+    that.setData({
+      dateArray: txtArray
+    });
     var componentId = e.componentId;
     var selectedId = e.selectedId;
     seletedTab = selectedId;
@@ -85,6 +108,7 @@ Page(Object.assign({}, Zan.Tab, {
       show: 'film_favorite',
       [`${componentId}.selectedId`]: selectedId
     });
+    this.loadData(true);//重新创建表
   },
   
 //选择日期事件 - 更新表格
@@ -171,6 +195,14 @@ Page(Object.assign({}, Zan.Tab, {
     var category = this.getCategory(data);
     var data = this.getChartData(data);
 
+    var title = '';
+    if (seletedTab == '1') {
+      title = '报名人数';
+    } else if (seletedTab == '2') {
+      title = '退学人数';
+    } else if (seletedTab == '3') {
+      title = '毕业人数';
+    }
     //新建表
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
@@ -179,7 +211,7 @@ Page(Object.assign({}, Zan.Tab, {
       animation: true,
       // background: '#f5f5f5',
       series: [{
-        name: '报名人数',
+        name: title,
         data: data,
         format: function (val, name) {
           return val.toFixed(0);
@@ -187,7 +219,7 @@ Page(Object.assign({}, Zan.Tab, {
       }],
       xAxis: {
         disableGrid: true,
-        title: '报名人数',
+        title: title,
         format: function (val) {
           return val.toFixed(0);
         }
@@ -203,6 +235,7 @@ Page(Object.assign({}, Zan.Tab, {
       height: 200,
       dataLabel: true,
       dataPointShape: false,
+      enableScroll: true,
       extra: {
         lineStyle: 'curve'
       }
@@ -212,7 +245,11 @@ Page(Object.assign({}, Zan.Tab, {
     //更新表
  
     var category = this.getCategory(data);
-    var data = this.getChartData(data);
+    var chartData = this.getChartData(data);
+    if(!category.length) {
+      category = ['暂无日期'];
+      chartData = [0];
+    }
     var title = '';
     if (seletedTab == '1') {
       title = '报名人数';
@@ -223,7 +260,7 @@ Page(Object.assign({}, Zan.Tab, {
     }
     var series = [{
       name: title,
-      data: data,
+      data: chartData,
       format: function (val, name) {
         return val;
       }
