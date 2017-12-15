@@ -9,7 +9,7 @@
 
 <view class='tab-content'>
 
-  <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
+  <view class="tab-content-item">  
   <!--选择项目-->
     <!-- <view class='dateChoice'>
        <block wx:for="{{dateArray}}">
@@ -24,7 +24,7 @@
           <text class='text1'>{{item.kemuName}}</text>
     </view>
     <view class='cavasTitle'>{{show == 'film_favorite' ? '空车率' : '车辆预约'}}</view>
-    <canvas canvas-id="{{item.cavasId}}" disable-scroll="true" class="canvas" data-id="{{item.id}}">
+    <canvas canvas-id="{{item.cavasId}}" disable-scroll="true" class="canvas" data-id="{{item.id}}" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler">
     </canvas>
 </block>
     

@@ -144,20 +144,6 @@ Page(Object.assign({}, Zan.Tab, {
     this.loadData(true);//新建表
     //请求报名人数数据
   },
-  
-  createSimulationData: function () {
-    var categories = [];
-    var data = [];
-    for (var i = 0; i < 10; i++) {
-      categories.push('2016-' + (i + 1));
-      data.push(Math.random() * (20 - 10) + 10);
-    }
-    // data[4] = null;
-    return {
-      categories: categories,
-      data: data
-    }
-  },
 
   loadData:function(changeTab) {
     var that = this;
@@ -165,7 +151,7 @@ Page(Object.assign({}, Zan.Tab, {
       url: getApp().globalData.schoolURL +'/SchoolMaster/statisticsdata/getSchoolStatisticsData',
       method: 'GET',
       data: {
-        jgid: '14001',
+        jgid: '140001',
         datetype : dateTab,
         studenttype : seletedTab
       },
