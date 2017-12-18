@@ -42,3 +42,8 @@ page {
   height: 35px;
   background-color: #1b8eef;
 }
+.classifyName {
+  font-size: 16px;
+  color: white;
+  align-self: center;
+} 
