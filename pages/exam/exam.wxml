@@ -29,7 +29,7 @@
       <view class='classifyName'>{{item}}</view>
     </block>
   </view>
-
+<view class='record-Content'>
   <block wx:for="{{[1,2,3,4]}}">
     <view class='recordView'>
       <view class='recordText1'>1次</view>
@@ -38,6 +38,8 @@
     </view>
     <view class='line'></view>
   </block>
+</view>
+
 </block>
     
 

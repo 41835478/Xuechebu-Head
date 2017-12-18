@@ -14,7 +14,7 @@ Page(Object.assign({}, Zan.Tab, {
         id: '2',
         title: '满学时未约考统计'
       }],
-      selectedId: 'all',
+      selectedId: '1',
       scroll: false
     },
     show: 'film_favorite',
