@@ -156,6 +156,7 @@ Page(Object.assign({}, Zan.Tab, {
     seletedTab = '1'; 
     dateTab = '1';
     chartArray = [];
+    chartPassArray = [];
     this.loadData();
   },
   loadData:function() {

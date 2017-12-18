@@ -1,127 +1,108 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
 var lineChart = null;
-var seletedTab = '';
+var seletedTab = '1';
+var dateTab = '1';
 Page(Object.assign({}, Zan.Tab, {
   data: {
     tab1: {
       list: [{
-        id: 'all',
+        id: '1',
         title: '全部收入'
       }, {
-        id: 'topay',
+        id: '2',
         title: '报名收入'
       }, {
-        id: 'tosend',
+        id: '3',
         title: '考试收入'
       }, {
-        id: 'train',
+        id: '4',
         title: '训练收入'
       }, {
-        id: 'other',
+        id: '5',
         title: '其他收入'
       }],
-      selectedId: 'all',
+      selectedId: '1',
       scroll: true
     },
     show:'film_favorite',
     dateArray: [
       {
         date: '近七天',
-        changeColor: 'selected'
+        changeColor: 'selected',
+        id:'1'
       },
       {
         date: '近一个月',
-        changeColor: 'normal'
+        changeColor: 'normal',
+        id: '2'
+
       },
       {
         date: '近三个月',
-        changeColor: 'normal'
+        changeColor: 'normal',
+        id: '3'
+
       },
       {
         date: '本年度',
-        changeColor: 'normal'
+        changeColor: 'normal',
+        id: '4'
+
       }
     ],
     classifyArray:[
-      '报名时间',
-      '报名人数',
-      '数据变化'
+      '收费日期',
+      '数量',
+      '总金额'
     ]
   },
+  touchHandler: function (e) {
+    lineChart.scrollStart(e);
+  },
+  moveHandler: function (e) {
+    lineChart.scroll(e);
+  },
+  touchEndHandler: function (e) {
+    lineChart.scrollEnd(e);
+  },
 
+//选择分栏
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
     seletedTab = selectedId;
-    this.setData({    show: 'film_favorite',
+    this.setData({ 
 
       [`${componentId}.selectedId`]: selectedId
     });
+    this.loadData();
   },
   
+  //改变日期
   setDate(e) {
     var that = this;
     var txtArray = [];
     for (var i = 0; i < that.data.dateArray.length; i++) {
       if (e.currentTarget.dataset.date == that.data.dateArray[i].date) {
-        txtArray.push({date:that.data.dateArray[i].date, changeColor:'selected'});
+        dateTab = that.data.dateArray[i].id;//记录选择的日期
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected', id: that.data.dateArray[i].id });
       } else {
-        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal' });
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal', id: that.data.dateArray[i].id });
       }
     }
+    //刷新日期选择状态
     that.setData({
-      dateArray:txtArray
+      dateArray: txtArray
     });
+    this.loadData();
   },
 
   onLoad: function (e) {
-    var windowWidth = 320;
-    try {
-      var res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      console.error('getSystemInfoSync failed!');
-    }
-
-    var simulationData = this.createSimulationData();
-    lineChart = new wxCharts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: simulationData.categories,
-      animation: true,
-      // background: '#f5f5f5',
-      series: [{
-        name: '成交量1',
-        data: simulationData.data,
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }, {
-        name: '成交量2',
-        data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 200,
-      dataLabel: false,
-      dataPointShape: true,
-      extra: {
-        lineStyle: 'curve'
-      }
-    });
+    seletedTab = '1';
+    dateTab = '1';
+    this.loadData();
+    
   },
   
   createSimulationData: function () {
@@ -136,6 +117,141 @@ Page(Object.assign({}, Zan.Tab, {
       categories: categories,
       data: data
     }
-  }
+  },
 
+  //请求数据
+  loadData:function() {
+    var that = this;
+
+    wx.request({
+      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/statisticsdata/getSchoolStatisticsData',
+      method: 'GET',
+      data: {
+        jgid: wx.getStorageSync('JGID'),
+        datetype: dateTab,
+        type: seletedTab
+      },
+      header: {
+        "Content-Type": "json",
+      },
+      success: function (res) {
+        //设置数据源
+        that.setData({ dataSource: res.data.data })
+        if(lineChart == null) {
+          that.createChartWithData(res.data.data);
+        } else {
+          that.updateChartWithData(res.data.data);
+        }
+      }
+    })
+  },
+  updateChartWithData:function(dataSource) {
+    var title = '';
+    if (seletedTab == '1') {
+      title = '总收入';
+    }
+    if (seletedTab == '2') {
+      title = '报名收入';
+    }
+    if (seletedTab == '3') {
+      title = '考试收入'
+    }
+    if (seletedTab == '4') {
+      title = '训练收入'
+    }
+    if (seletedTab == '5') {
+      title = '其他收入'
+    }
+    var category = [];
+    var data = [];
+    for (var i = 0; i < dataSource.length; i++) {
+      var item = dataSource[i];
+      category.push(item.pdate);
+      data.push(item.income);
+    }
+    var series = [{
+      name: title,
+      data: data,
+      format: function (val, name) {
+        return val;
+      }
+    }];
+    lineChart.updateData({
+      categories: category,
+      series: series,
+    });  
+  }
+,
+
+  //创建表
+  createChartWithData:function(dataSource) {
+    var title = '';
+    if(seletedTab == '1') {
+      title = '总收入';
+    }
+    if(seletedTab == '2') {
+      title = '报名收入';
+    }
+    if(seletedTab == '3') {
+      title = '考试收入'
+    }
+    if(seletedTab == '4') {
+      title = '训练收入'
+    }
+    if(seletedTab == '5') {
+      title = '其他收入'
+    }
+    var category = [];
+    var data = [];
+    for(var i = 0; i < dataSource.length; i++) {
+      var item = dataSource[i];
+      category.push(item.pdate);
+      data.push(item.income);
+    }
+
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    //新建表
+    lineChart = new wxCharts({
+      canvasId: 'lineCanvas',
+      type: 'line',
+      categories: category,
+      animation: true,
+      // background: '#f5f5f5',
+      series: [{
+        name: title,
+        data: data,
+        format: function (val, name) {
+          return val;
+        }
+      }],
+      xAxis: {
+        disableGrid: true,
+        title: title,
+        format: function (val) {
+          return val.toFixed(0);
+        }
+      },
+      yAxis: {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return val.toFixed(0);
+        },
+        min: 0
+      },
+      width: windowWidth,
+      height: 200,
+      dataLabel: true,
+      dataPointShape: false,
+      enableScroll: true,
+      extra: {
+        lineStyle: 'curve'
+      }
+    });
+  }
 }));
