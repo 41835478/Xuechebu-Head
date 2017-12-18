@@ -102,7 +102,7 @@ Page(Object.assign({}, Zan.Tab, {
   loadData:function() {
     var that = this;
     wx.request({
-      url: getApp().globalData.schoolURL + '/SchoolMaster/cardrill/getcardrilldata',
+      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/cardrill/getcardrilldata',
       method: 'GET',
       data: {
         jgid: '140001',

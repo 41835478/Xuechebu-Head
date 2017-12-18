@@ -102,10 +102,10 @@ Page(Object.assign({}, Zan.Tab, {
   loadData: function () {
     var that = this;
     wx.request({
-      url: getApp().globalData.schoolURL + '/SchoolMaster/theoryperiod/getFullXueShi',
+      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/theoryperiod/getFullXueShi',
       method: 'GET',
       data: {
-        jgid: '140001',
+        jgid: wx.getStorageSync('JGID'),
         type: seletedTab
       },
       header: {

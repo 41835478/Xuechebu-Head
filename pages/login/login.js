@@ -139,7 +139,7 @@ Page({
   getVcode: function (cal) {
     var that = this;
     wx.request({
-      url: 'https://jptest2.xuechebu.com/sms/GetSmsRandCode',
+      url: getApp().globalData.imageURL + '/sms/GetSmsRandCode',
       data: {
         phonenum: that.data.inputMobileNumber,
         codemark: "1",
@@ -244,7 +244,7 @@ Page({
    var that = this;
    var userInfo = {};
    wx.request({
-     url: 'https://jptest2.xuechebu.com/UserCenter/UserInfo/LoginCode?',
+     url: getApp().globalData.imageURL +'/UserCenter/UserInfo/LoginCode',
      data: { username: that.data.inputMobileNumber,
            code: that.data.inputVcode,
            usertype:'3',  
@@ -263,13 +263,13 @@ Page({
         wx.setStorageSync('isLoginByPhone','true'),
         wx.setStorageSync('APIURLIOS', data.data.APIURLIOS),
         wx.setStorageSync('JGID', data.data.JGID)
-
+        getApp().globalData.schoolURL = data.data.APIURLIOS;
          that.setData({
            mobile_login: true,
          })
         
         wx.switchTab({
-         url: '../line/line'
+          url: '../main/index'
          });
          
        } else {

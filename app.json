@@ -1,5 +1,6 @@
 {
   "pages": [
+     "pages/login/login",        
     "pages/main/index",
     "utils/tab/index",
     "pages/mine/mine",
@@ -10,7 +11,6 @@
     "pages/training/train",
     "pages/finance/finance",
     "pages/exam/exam",
-    "pages/login/login",
     "pages/web/web",
     "pages/developing/dev"
   ],

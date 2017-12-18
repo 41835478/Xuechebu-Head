@@ -48,7 +48,7 @@ Page({
 
         // sliderList
         wx.request({
-          url: 'https://jptest2.xuechebu.com/ad/GetPageAdview_jucheyou',
+          url: getApp().globalData.imageURL +'/ad/GetPageAdview_jucheyou',
             method: 'GET',
             data: {},
             header: {
@@ -96,7 +96,7 @@ Page({
 
         //choiceList
         wx.request({
-          url: 'https://jptest4.xuechebu.com/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=7',
+          url: getApp().globalData.webURL + '/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=7',
             method: 'GET',
             data: {},
             header: {
