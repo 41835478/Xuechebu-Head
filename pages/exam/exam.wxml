@@ -47,13 +47,27 @@
 
 <!-- view 考试预约 -->
 <view class='exam-book-content' hidden="{{show == 'exam-book' ? false : true}}">
- <view>考试预约</view>
+  <block wx:for="{{bookDataSource}}">
+      <view class='title1'>
+            <text class='text1'>{{item.kemuName}}</text>
+      </view>
+      <view class='cavasTitle'>{{item.title}}</view>
+      <canvas canvas-id="{{item.cavasID}}" disable-scroll="true" class="canvas" data-id="{{item.id}}" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler">
+      </canvas>
+  </block>
 </view>
 <!-- view 考试预约 -->
 
 <!-- view 考试通过 -->
 <view class='exam-pass-content' hidden="{{show == 'exam-pass' ? false : true}}">
- <view>考试通过</view>
+  <block wx:for="{{passDataSource}}">
+      <view class='title1'>
+            <text class='text1'>{{item.kemuName}}</text>
+      </view>
+      <view class='cavasTitle'>{{item.title}}</view>
+      <canvas canvas-id="{{item.cavasID}}" disable-scroll="true" class="canvas" data-id="{{item.id}}" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler">
+      </canvas>
+  </block>
 </view>
 <!-- view 考试通过 -->
 

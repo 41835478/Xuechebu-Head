@@ -83,3 +83,17 @@
   width: 96%;
   height: 200px;
 }
+
+.text1 {
+  font-size: 15px;
+  vertical-align: middle;
+  display: table-cell;
+  color: white;
+}
+
+.cavasTitle {
+  text-align: center;
+  font-size: 16px;
+  font-style: bold;
+  color: #1b8eef;
+}
