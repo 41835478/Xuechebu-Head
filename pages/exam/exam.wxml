@@ -7,7 +7,7 @@
 
 <view class='tab-content'>
 
-  <view class="tab-content-item" hidden="{{show == 'film_favorite' ? false : true}}">  
+<view class="tab-content-item" hidden="{{show == 'exam-time' ? false : true}}">  
     <view class='dateChoice'>
        <block wx:for="{{dateArray}}">
          <button class="{{item.changeColor}}" data-date="{{item.date}}" bindtap="setDate">{{item.date}}
@@ -19,7 +19,7 @@
       <text class='text1'>图标统计</text>
     </view>
     <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" data-id="{{item.id}}"></canvas> -->
-
+<!--科目1,2,3,4  -->
 <block wx:for="{{kemuArray}}">
   <view class='title1'>
     <text class='text1'>{{item}}</text>
@@ -39,11 +39,25 @@
     <view class='line'></view>
   </block>
 </view>
-
 </block>
+<!--科目1,2,3,4 -->
     
+<!-- tab-content-item -->
+</view> 
 
-  </view> 
+<!-- view 考试预约 -->
+<view class='exam-book-content' hidden="{{show == 'exam-book' ? false : true}}">
+ <view>考试预约</view>
+</view>
+<!-- view 考试预约 -->
 
- </view> 
+<!-- view 考试通过 -->
+<view class='exam-pass-content' hidden="{{show == 'exam-pass' ? false : true}}">
+ <view>考试通过</view>
+</view>
+<!-- view 考试通过 -->
+
+
+<!-- tab-content -->
+</view> 
   

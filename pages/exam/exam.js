@@ -21,7 +21,7 @@ Page(Object.assign({}, Zan.Tab, {
       selectedId: '1',
       scroll: false
     },
-    show: 'film_favorite',
+    show: 'exam-time',
     dateArray: [
       {
         date: '最近一天',
@@ -76,31 +76,19 @@ Page(Object.assign({}, Zan.Tab, {
     seletedTab = selectedId;
     if (selectedId == '1') {
       this.setData({
-        classifyArray: [
-          '考试次数',
-          '通过人数',
-          '未通过人数'
-        ]
+        show: 'exam-time'
       })
     } else if (selectedId == '2') {
       this.setData({
-        classifyArray: [
-          '预约次数',
-          '预约人数',
-          '数据变化'
-        ]
+        show: 'exam-book'
+
       })
     } else if (selectedId == '3') {
       this.setData({
-        classifyArray: [
-          '毕业时间',
-          '毕业人数',
-          '数据变化'
-        ]
+        show: 'exam-pass'
       })
     }
     this.setData({
-      show: 'film_favorite',
 
       [`${componentId}.selectedId`]: selectedId
     });
