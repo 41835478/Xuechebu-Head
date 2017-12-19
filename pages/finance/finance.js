@@ -69,6 +69,21 @@ Page(Object.assign({}, Zan.Tab, {
 
 //选择分栏
   handleZanTabChange(e) {
+    //重置日期,默认选择近七天
+    var that = this;
+    var txtArray = [];
+    for (var i = 0; i < this.data.dateArray.length; i++) {
+      if ('近七天' == that.data.dateArray[i].date) {
+        dateTab = that.data.dateArray[i].id;//记录选择的日期
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected', id: that.data.dateArray[i].id });
+      } else {
+        txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal', id: that.data.dateArray[i].id });
+      }
+    }
+    //刷新日期选择状态
+    that.setData({
+      dateArray: txtArray
+    });
     var componentId = e.componentId;
     var selectedId = e.selectedId;
     seletedTab = selectedId;
@@ -101,6 +116,7 @@ Page(Object.assign({}, Zan.Tab, {
   onLoad: function (e) {
     seletedTab = '1';
     dateTab = '1';
+    lineChart = null;
     this.loadData();
     
   },
