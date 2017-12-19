@@ -46,10 +46,22 @@ Page(Object.assign({}, Zan.Tab, {
       '未通过人数'
     ],
     kemuArray:[
-      '科目一',
-      '科目二',
-      '科目三',
-      '科目四',
+      {
+        kemuName: '科目一',
+        dataList: [],
+      }, 
+      {
+        kemuName: '科目二',
+        dataList: [],
+      }, 
+      {
+        kemuName: '科目三',
+        dataList: [],
+      },
+      {
+        kemuName: '科目四',
+        dataList: [],
+      }
     ],
     bookDataSource: []
   },
@@ -91,18 +103,7 @@ Page(Object.assign({}, Zan.Tab, {
     //重置日期,默认选择近七天
     var that = this;
     var txtArray = [];
-    // for (var i = 0; i < this.data.dateArray.length; i++) {
-    //   if ('近七天' == that.data.dateArray[i].date) {
-    //     dateTab = that.data.dateArray[i].id;//记录选择的日期
-    //     txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'selected', id: that.data.dateArray[i].id });
-    //   } else {
-    //     txtArray.push({ date: that.data.dateArray[i].date, changeColor: 'normal', id: that.data.dateArray[i].id });
-    //   }
-    // }
-    // //刷新日期选择状态
-    // that.setData({
-    //   dateArray: txtArray
-    // });
+    
     seletedTab = selectedId;
     if (selectedId == '1') {
       this.setData({
@@ -159,6 +160,8 @@ Page(Object.assign({}, Zan.Tab, {
     chartPassArray = [];
     this.loadData();
   },
+
+  //数据请求
   loadData:function() {
     var kemuA = ['科目一', '科目二', '科目三', '科目四'];
     var that = this;
@@ -177,7 +180,20 @@ Page(Object.assign({}, Zan.Tab, {
         var result = res.data;
         if(seletedTab == '1') {
           //考试次数
+          var result = res.data.data;
           var dataArray = [];
+          dataArray.push(result.keMu1DataList);
+          dataArray.push(result.keMu2DataList);
+          dataArray.push(result.keMu3DataList);
+          dataArray.push(result.keMu4DataList);
+          var newKemuArray = [];
+          for (var i = 0; i < dataArray.length; i++) {
+            newKemuArray.push({
+              kemuName: kemuA[i],
+              dataList: dataArray[i]
+            });           
+          }
+          that.setData({kemuArray : newKemuArray});
         } else if (seletedTab == '2') {
           //考试预约
           var dataArray = [];
@@ -198,7 +214,7 @@ Page(Object.assign({}, Zan.Tab, {
             bookSource.push({
               category: categoryBook,
               data: dataBook,
-              title: that.data.kemuArray[i] + '考试预约',
+              title: that.data.kemuArray[i].kemuName + '考试预约',
               cavasID: 'book'+i,
               kemuName : kemuA[i],
               id: i
@@ -230,7 +246,7 @@ Page(Object.assign({}, Zan.Tab, {
             bookSource.push({
               category: categoryBook,
               data: dataBook,
-              title: that.data.kemuArray[i] + '考试通过率',
+              title: that.data.kemuArray[i].kemuName + '考试通过率',
               cavasID: 'pass' + i,
               kemuName: kemuA[i],
               id: i
@@ -344,20 +360,4 @@ Page(Object.assign({}, Zan.Tab, {
       chartPassArray.push(chartLine);
     }
   }
-  ,
-
-  createSimulationData: function () {
-    var categories = [];
-    var data = [];
-    for (var i = 0; i < 10; i++) {
-      categories.push('2016-' + (i + 1));
-      data.push(Math.random() * (20 - 10) + 10);
-    }
-    // data[4] = null;
-    return {
-      categories: categories,
-      data: data
-    }
-  }
-
 }));

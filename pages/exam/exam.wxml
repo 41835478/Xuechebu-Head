@@ -22,7 +22,7 @@
 <!--科目1,2,3,4  -->
 <block wx:for="{{kemuArray}}">
   <view class='title1'>
-    <text class='text1'>{{item}}</text>
+    <text class='text1'>{{item.kemuName}}</text>
   </view>
   <view class='classifyTitle'>
     <block wx:for="{{classifyArray}}">
@@ -30,11 +30,11 @@
     </block>
   </view>
 <view class='record-Content'>
-  <block wx:for="{{[1,2,3,4]}}">
+  <block wx:for="{{item.dataList}}">
     <view class='recordView'>
-      <view class='recordText1'>1次</view>
-      <view class='recordText2'>188</view>
-      <view class='recordText3'>48</view>
+      <view class='recordText1'>{{item.examTimes}}</view>
+      <view class='recordText2'>{{item.passnum}}</view>
+      <view class='recordText3'>{{item.nopassnum}}</view>
     </view>
     <view class='line'></view>
   </block>

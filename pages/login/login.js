@@ -247,7 +247,7 @@ Page({
      url: getApp().globalData.imageURL +'/UserCenter/UserInfo/LoginCode',
      data: { username: that.data.inputMobileNumber,
            code: that.data.inputVcode,
-           usertype:'3',  
+           usertype:'4',  
         },
 
     header: {
