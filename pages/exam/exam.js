@@ -25,12 +25,12 @@ Page(Object.assign({}, Zan.Tab, {
     show: 'exam-time',
     dateArray: [
       {
-        date: '最近一天',
+        date: '最近一次',
         changeColor: 'selected',
         id:'1'
       },
       {
-        date: '近七天',
+        date: '近七次',
         changeColor: 'normal',
         id:'2'
       },

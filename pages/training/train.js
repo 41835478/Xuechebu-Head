@@ -191,6 +191,7 @@ Page(Object.assign({}, Zan.Tab, {
     }
 
     if(!chartArray.length) {
+      //没有存储表格,就新创建表格
       for (var i = 0; i < this.data.kemuArray.length; i++) {
         var chartLine = new wxCharts({
           canvasId: this.data.kemuArray[i].cavasId,
@@ -227,6 +228,7 @@ Page(Object.assign({}, Zan.Tab, {
         chartArray.push(chartLine);
       }
     } else {
+      //有表格就更新
       for (var i = 0; i < this.data.kemuArray.length; i++) {
         var chartLine = chartArray[i];
         var series = [{

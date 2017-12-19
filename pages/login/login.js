@@ -158,11 +158,7 @@ Page({
           })
        
         }else{
-          wx.showToast({
-            title: '获取验证码失败',
-            icon: 'success',
-            duration: 2000
-          })
+          that.showAlert(true, data.message+'!');
         }
       }
     })
@@ -183,61 +179,18 @@ Page({
 
         });
       } else {
-        wx.showToast({
-          title: '请获取验证码！',
-          icon: 'success',
-          duration: 2000
-        })
+        new app.WeToast()
+        that.showAlert(true, '请获取验证码!');
+
+       
         return false;
       }
 
     }else{
-      wx.showToast({
-        title: '请输入手机号！',
-      
-      })
+      new app.WeToast()
+      that.showAlert(true, '请输入手机号!');
       return false;
     }
-   
- 
-    // util.JFrequest({
-    //   url: 'https://t.superabc.cn/c/s/mobilelogin',
-    //   param: {
-    //     mobile_no: that.data.inputMobileNumber,
-    //     vcode: that.data.inputVcode
-    //   },
-    //   success: function (res) {
-    //     if (res && res.statusCode == 200 && res.data && res.data.code == 0) {
-    //       userInfo = {
-    //         mobile_no: res.data.data.mobile_no,
-    //         openid: res.data.data.openid,
-    //         portrait: res.data.data.portrait,
-    //         user_id: res.data.data.user_id,
-    //         user_name: res.data.data.user_name
-    //       };
-    //       //种下utoken
-    //       wx.setStorage({
-    //         key: "utoken",
-    //         data: res.data.data.utoken
-    //       });
-    //       //存储个人信息
-    //       app.setUserInfo(userInfo);
-    //       //跳转到首页
-    //       wx.switchTab({
-    //         url: '../line/line'
-    //       });
-
-
-    //       if (typeof cal == 'function') {
-    //         cal(res.data.data);
-    //       }
-    //     } else {
-    //       console.log("请求数据失败，读取缓存");
-    //     }
-
-
-    //   }
-    // });
   },
 
  loginByPhone:function(e){
@@ -261,7 +214,7 @@ Page({
          //设置用户的数据
         wx.setStorageSync("userInfo", data.data),
         wx.setStorageSync('isLoginByPhone','true'),
-        wx.setStorageSync('APIURLIOS', data.data.APIURLIOS),
+          wx.setStorageSync('APIURLIOS', data.data.SchoolMasterUrl),
         wx.setStorageSync('JGID', data.data.JGID)
         getApp().globalData.schoolURL = data.data.APIURLIOS;
          that.setData({
@@ -281,22 +234,7 @@ Page({
         //    title: data.message,
         //  })
          new app.WeToast()
-         that.wetoast.toast({
-           img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==',
-           imgClassName: 'my_wetoast_img',
-           imgMode: 'scaleToFill',
-           title: data.message,
-           titleClassName: 'my_wetoast_title',
-           success(data) {
-             console.log(Date.now() + ': success')
-           },
-           fail(data) {
-             console.log(Date.now() + ': fail')
-           },
-           complete(data) {
-             console.log(Date.now() + ': complete')
-           }
-         })
+         that.showAlert(true, data.message);
        }
      }
    })
@@ -320,6 +258,7 @@ Page({
       });
     }
   },
+
   getInputVcode:function(e) {
     var that = this;
     var number = e.detail.value;
@@ -367,7 +306,31 @@ Page({
     })
 
 
+  },
+  showAlert:function(sucess, title) {
+    var image = '';
+    if(sucess) {
+      image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
+    } else {
+      image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
+    }
+    var that = this;
+    new app.WeToast()
+    that.wetoast.toast({
+      img: image,
+      imgClassName: 'my_wetoast_img',
+      imgMode: 'scaleToFill',
+      title: title,
+      titleClassName: 'my_wetoast_title',
+      success(data) {
+        console.log(Date.now() + ': success')
+      },
+      fail(data) {
+        console.log(Date.now() + ': fail')
+      },
+      complete(data) {
+        console.log(Date.now() + ': complete')
+      }
+    })
   }
-
-
 });

@@ -29,11 +29,22 @@ Page({
   //     })
   //   })
   var url = '';
-  if (e.id == 0 || e.id == '') {
-    url = 'https://jptest5.xuechebu.com/xuechebu/information.html?pdcode=XZD_XWZX';
+  if (e.type == 1) {
+    if (e.id == 0 || e.id == '') {
+      url = 'https://jptest5.xuechebu.com/xuechebu/information.html?pdcode=XZD_XWZX';
+    } else {
+        url = 'https://jptest5.xuechebu.com/xuechebu/article.html?id=' + e.id;
+    }
   } else {
-    url = 'https://jptest5.xuechebu.com/xuechebu/article.html?id=' + e.id;
+    var data = wx.getStorageSync('ScrollData');
+    for (var i = 0;i < data.length; i++) {
+      var item = data[i];
+      if(e.id == item.id) {
+        url = item.url;
+      }
+    }
   }
+  
 
   this.setData({
     url: url

@@ -1,9 +1,8 @@
 <import src="/dist/tab/index.wxml" />
 
-  <view>
+  <view class='head'>
     <template is="zan-tab" data="{{tab: tab1, componentId: 'tab1'}}"></template>
   </view>
-
 
 <view class='tab-content'>
 

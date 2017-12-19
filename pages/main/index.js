@@ -34,7 +34,13 @@ Page({
           complete: function(res) {},
         })
     },
-
+  onImageClick:function(e){
+    if (e.currentTarget.dataset.url != '#' && e.currentTarget.dataset.url != '') {
+      wx.navigateTo({
+        url: '../web/web?id=' + e.currentTarget.dataset.id + '&type=2',
+      })
+    }
+  },
     onLoad: function() {
         console.log('onLoad')
         var that = this
@@ -50,7 +56,7 @@ Page({
         wx.request({
           url: getApp().globalData.imageURL +'/ad/GetPageAdview_jucheyou',
             method: 'GET',
-            data: {},
+            data: { adtype: 'xcblb_xiaozhang'},
             header: {
                 'Accept': 'application/json'
             },
@@ -58,6 +64,8 @@ Page({
                 that.setData({
                     images: res.data.data
                 })
+                //存储新闻数组
+                wx.setStorageSync('ScrollData', res.data.data);
             }
         })
         // var scrollArray = [];
@@ -73,28 +81,8 @@ Page({
           menuName:i})
         }
         that.setData({venuesItems : menuArray})
-        
-        // //venuesList
-        // wx.request({
-        //     url: 'http://huanqiuxiaozhen.com/wemall/venues/venuesList',
-        //     method: 'GET',
-        //     data: {},
-        //     header: {
-        //         'Accept': 'application/json'
-        //     },
-        //     success: function(res) {
-        //         that.setData({
-        //             venuesItems: res.data.data
-        //         })
-        //         setTimeout(function () {
-        //             that.setData({
-        //                 loadingHidden: true
-        //             })
-        //         }, 1500)
-        //     }
-        // })
 
-        //choiceList
+        //choiceList  新闻列表
         wx.request({
           url: getApp().globalData.webURL + '/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=7',
             method: 'GET',
@@ -105,6 +93,7 @@ Page({
             success: function(res) {
                 that.setData({
                     choiceItems: res.data.data.Result
+
                 })
                 setTimeout(function () {
                     that.setData({

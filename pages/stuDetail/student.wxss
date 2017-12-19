@@ -66,5 +66,5 @@
 .canvas{
   width: 96%;
   height: 200px;
-  /* z-index: 1; */
+   z-index: 1; 
 }

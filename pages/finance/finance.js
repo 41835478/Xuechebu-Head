@@ -23,7 +23,7 @@ Page(Object.assign({}, Zan.Tab, {
         title: '其他收入'
       }],
       selectedId: '1',
-      scroll: true
+      scroll: false
     },
     show:'film_favorite',
     dateArray: [
@@ -53,8 +53,8 @@ Page(Object.assign({}, Zan.Tab, {
     ],
     classifyArray:[
       '收费日期',
-      '数量',
-      '总金额'
+      '数量    ',
+      ' 总金额 '
     ]
   },
   touchHandler: function (e) {

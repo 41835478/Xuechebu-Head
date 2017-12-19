@@ -5,7 +5,7 @@
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
             <block wx:for="{{images}}">
                 <swiper-item>
-                    <image src="{{item.img}}" class="slide-image" mode="scaleToFill"/>
+                    <image src="{{item.img}}" class="slide-image" mode="scaleToFill" data-id="{{item.id}}" data-url="{{item.url}}"  bindtap='onImageClick'/>
                 </swiper-item>
             </block>
         </swiper>
@@ -34,7 +34,7 @@
         </view>
 
         <view class='moreView' style='padding-top:6px;' bindtap='moreClick'>
-        <navigator url="../web/web?id=0">
+        <navigator url="../web/web?id=0&type=1">
            <text class='moreTxt' style='font-size:16px; color: #666666;'>更多 </text>
            <image class='rightArrow' src='/image/right_arrow.png'></image>
          </navigator>
@@ -45,7 +45,7 @@
     <view class="choice_box">
         <view class="choice_list">
             <block wx:for="{{choiceItems}}">
-                <navigator url="../web/web?id={{item.Id}}">
+                <navigator url="../web/web?id={{item.Id}}&type=1">
                     <view class="choice_item">
                         <view class='imageView'>
                           <image src="{{item.IMGURL}}"></image>

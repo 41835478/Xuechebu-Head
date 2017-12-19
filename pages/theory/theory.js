@@ -146,8 +146,8 @@ Page(Object.assign({}, Zan.Tab, {
         data2.push(item.enrollnum);
       }
     } else if (seletedTab == '2') {
-      result1 = data.data.kemu2XunLian;//科二车辆预约
-      result2 = data.data.kemu3XunLian;//科三车辆预约
+      result1 = data.data.kemu1StudentNum;//科二车辆预约
+      result2 = data.data.kemu4StudentNum;//科三车辆预约
       title = '满学时未约考统计';
       if (!result1.length) {
         category1.push('暂无数据');

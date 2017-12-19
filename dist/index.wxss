@@ -2,8 +2,9 @@
 .zan-tab{ box-sizing: border-box;
     position: fixed;
     top: 0;
-    left: 0;height:45px;
-    z-index: 999}
+    left: 0;
+    height:45px;
+    z-index: 9999}
 .tab-content {
   margin-top: 55px;
 }

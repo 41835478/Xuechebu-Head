@@ -14,8 +14,8 @@
 }
 .catImage {
   align-self: center;
-  width: 260px;
-  height: 366px;
+  width: 213px;
+  height: 300px;
 }
 
 .tip {
