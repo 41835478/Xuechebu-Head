@@ -1,5 +1,7 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
+var functions = require('../functions.js');
+
 var lineChart = null;
 var seletedTab = '1';
 var dateTab = '1';
@@ -156,7 +158,7 @@ Page(Object.assign({}, Zan.Tab, {
         if(lineChart == null) {
           that.createChartWithData(res.data.data);
         } else {
-          that.updateChartWithData(res.data.data);
+          that.createChartWithData(res.data.data);
         }
       }
     })
@@ -201,6 +203,7 @@ Page(Object.assign({}, Zan.Tab, {
 
   //创建表
   createChartWithData:function(dataSource) {
+    lineChart = null;
     var title = '';
     if(seletedTab == '1') {
       title = '总收入';
@@ -233,6 +236,8 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
     //新建表
+    var minNum = functions.getMaxNumFromArray(data);
+    var yatr = functions.getYAtrWithUnitNum(minNum, '¥');
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
       type: 'line',
@@ -253,13 +258,7 @@ Page(Object.assign({}, Zan.Tab, {
           return val.toFixed(0);
         }
       },
-      yAxis: {
-        // title: '成交金额 (万元)',
-        format: function (val) {
-          return '¥'+val.toFixed(0);
-        },
-        min: 0
-      },
+      yAxis: yatr,
       width: windowWidth,
       height: 200,
       dataLabel: true,

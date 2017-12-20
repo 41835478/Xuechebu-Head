@@ -201,7 +201,7 @@ Page(Object.assign({}, Zan.Tab, {
     }
     for (var i = 0; i < this.data.kemuArray.length; i++) {
       var minNum = functions.getMaxNumFromArray(allData[i]);
-      var yatr = functions.getYAtrWithNum(minNum);
+      var yatr = functions.getYAtrWithNumUnit(minNum , unit);
       var chartLine = new wxCharts({
         canvasId: this.data.kemuArray[i].cavasId,
         type: 'line',

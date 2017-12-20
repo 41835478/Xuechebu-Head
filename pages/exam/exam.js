@@ -1,5 +1,6 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
+var functions = require('../functions.js');
 var lineChart = null;
 var seletedTab = '1'; //查询学生类型1表示报名学员 2表示退学学员  3表示毕业学员
 var dateTab = '1'; //1表示七天的 2表示一个月 3表示三个月 4表示本年度
@@ -275,6 +276,8 @@ Page(Object.assign({}, Zan.Tab, {
     }
     for (var i = 0; i < dataSource.length; i++) {
       var item = dataSource[i];
+      var minNum = functions.getMaxNumFromArray(item.data);
+      var yatr = functions.getYAtrWithNum(minNum);
         var chartLine = new wxCharts({
           canvasId: item.cavasID,
           type: 'line',
@@ -291,13 +294,7 @@ Page(Object.assign({}, Zan.Tab, {
           xAxis: {
             disableGrid: true
           },
-          yAxis: {
-            // title: '成交金额 (万元)',
-            format: function (val) {
-              return val.toFixed(0);
-            },
-            min: 0
-          },
+          yAxis: yatr,
           width: windowWidth,
           height: 200,
           dataLabel: false,
@@ -325,6 +322,8 @@ Page(Object.assign({}, Zan.Tab, {
     }
     for (var i = 0; i < dataSource.length; i++) {
       var item = dataSource[i];
+      var minNum = functions.getMaxNumFromArray(item.data);
+      var yatr = functions.getYAtrWithNumUnit(minNum, '%');
       var chartLine = new wxCharts({
         canvasId: item.cavasID,
         type: 'line',
@@ -341,13 +340,7 @@ Page(Object.assign({}, Zan.Tab, {
         xAxis: {
           disableGrid: true
         },
-        yAxis: {
-          // title: '成交金额 (万元)',
-          format: function (val) {
-            return val.toFixed(0) + '%';
-          },
-          min: 0
-        },
+        yAxis: yatr,
         width: windowWidth,
         height: 200,
         dataLabel: true,

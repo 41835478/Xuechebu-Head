@@ -71,7 +71,7 @@ module.exports = {
       yatr = {
         // title: '成交金额 (万元)',
         format: function (val) {
-          return val.toFixed(0);
+          return val;
         },
         min: 0,
       }
@@ -79,7 +79,51 @@ module.exports = {
       yatr = {
         // title: '成交金额 (万元)',
         format: function (val) {
-          return val.toFixed(0);
+          return val;
+        },
+        min: 0,
+        max: 5
+      }
+    }
+    return yatr;
+  },
+  getYAtrWithNumUnit: function (minNum, unit) {
+    var yatr = {};
+    if (minNum >= 5) {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return  val + unit;
+        },
+        min: 0,
+      }
+    } else {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return val + unit;
+        },
+        min: 0,
+        max: 5
+      }
+    }
+    return yatr;
+  },
+  getYAtrWithUnitNum: function (minNum, unit) {
+    var yatr = {};
+    if (minNum >= 5) {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return unit + val;
+        },
+        min: 0,
+      }
+    } else {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return unit + val;
         },
         min: 0,
         max: 5
