@@ -1,5 +1,6 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
+var functions = require('../functions.js');
 var lineChart = null;
 var seletedTab = '1'; //查询学生类型1表示报名学员 2表示退学学员  3表示毕业学员
 var dateTab = '1'; //1表示七天的 2表示一个月 3表示三个月 4表示本年度
@@ -190,7 +191,8 @@ Page(Object.assign({}, Zan.Tab, {
     } else if (seletedTab == '3') {
       title = '毕业人数';
     }
-
+    var minNum = functions.getMaxNumFromArray(data);
+    var yatr = functions.getYAtrWithNum(minNum);
     //新建表
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
@@ -199,6 +201,7 @@ Page(Object.assign({}, Zan.Tab, {
       animation: true,
       // background: '#f5f5f5',
       series: [{
+        disableGrid: true,
         name: title,
         data: data,
         format: function (val, name) {
@@ -212,13 +215,7 @@ Page(Object.assign({}, Zan.Tab, {
           return val.toFixed(0);
         }
       },
-      yAxis: {
-        // title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(0);
-        },
-        min: 0
-      },
+      yAxis: yatr,
       width: windowWidth,
       height: 200,
       dataLabel: true,
@@ -234,6 +231,8 @@ Page(Object.assign({}, Zan.Tab, {
  
     var category = this.getCategory(data);
     var chartData = this.getChartData(data);
+    var minNum = functions.getMaxNumFromArray(chartData);
+    var yatr = functions.getYAtrWithNum(minNum);
     if(!category.length) {
       category = ['暂无日期'];
       chartData = [0];
@@ -264,7 +263,8 @@ Page(Object.assign({}, Zan.Tab, {
     lineChart.updateData({
       categories: category,
       series: series, 
-      enableScroll:scroll
+      enableScroll:scroll,
+      yAxis: yatr
     });
   },
 

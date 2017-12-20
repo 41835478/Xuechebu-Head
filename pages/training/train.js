@@ -1,5 +1,6 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
+var functions = require('../functions.js');
 var lineChart = null;
 var chartArray = [];
 var seletedTab = '1'; //1表示查询空车率 2表示查询预约学员
@@ -190,77 +191,48 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    if(!chartArray.length) {
-      //没有存储表格,就新创建表格
-      for (var i = 0; i < this.data.kemuArray.length; i++) {
-        var chartLine = new wxCharts({
-          canvasId: this.data.kemuArray[i].cavasId,
-          type: 'line',
-          categories: category[i],
-          animation: true,
-          // background: '#f5f5f5',
-          series: [{
-            name: this.data.kemuArray[i].kemuName + title,
-            data: allData[i],
-            format: function (val, name) {
-              return val + '%';
-            }
-          }],
-          xAxis: {
-            disableGrid: true
-          },
-          yAxis: {
-            // title: '成交金额 (万元)',
-            format: function (val) {
-              return val;
-            },
-            min: 0
-          },
-          width: windowWidth,
-          height: 200,
-          dataLabel: true,
-          dataPointShape: true,
-          enableScroll: true,
-          extra: {
-            lineStyle: 'curve'
-          }
-        });
-        chartArray.push(chartLine);
-      }
+    chartArray = []; //清除数组中的数据
+    //每次都创建表格
+    var unit = '';
+    if (seletedTab == '1') {
+      unit = '%';
     } else {
-      var unit = '';
-      if(seletedTab == '1') {
-        unit = '%';
-      } else {
-        unit = '';
-      }
-      //有表格就更新
-      for (var i = 0; i < this.data.kemuArray.length; i++) {
-        var chartLine = chartArray[i];
-        var series = [{
+      unit = '';
+    }
+    for (var i = 0; i < this.data.kemuArray.length; i++) {
+      var minNum = functions.getMaxNumFromArray(allData[i]);
+      var yatr = functions.getYAtrWithNum(minNum);
+      var chartLine = new wxCharts({
+        canvasId: this.data.kemuArray[i].cavasId,
+        type: 'line',
+        categories: category[i],
+        animation: true,
+        // background: '#f5f5f5',
+        series: [{
           name: this.data.kemuArray[i].kemuName + title,
           data: allData[i],
           format: function (val, name) {
-            return val.toFixed(0) + unit;
+            return val + unit;
           }
-        }];
-        chartLine.updateData({
-          categories: category[i],
-          series: series,
-          yAxis: {
-            // title: '成交金额 (万元)',
-            format: function (val) {
-              return val;
-            },
-            min: 0
-          }
-        });
+        }],
+        xAxis: {
+          disableGrid: true
+        },
+        yAxis:yatr,
+        width: windowWidth,
+        height: 200,
+        dataLabel: true,
+        dataPointShape: true,
+        enableScroll: true,
+        extra: {
+          lineStyle: 'curve'
+        }
+      });
+      chartArray.push(chartLine);
     }
-    }
-   
 
-    // this.setData({kemuArray:this.data.kemuArray})
-  },
+  }
+  ,
 
   onLoad: function (e) {
     seletedTab = '1';

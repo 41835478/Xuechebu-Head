@@ -189,7 +189,7 @@ Page(Object.assign({}, Zan.Tab, {
       name: title,
       data: data,
       format: function (val, name) {
-        return val;
+        return '¥' + val;
       }
     }];
     lineChart.updateData({
@@ -243,7 +243,7 @@ Page(Object.assign({}, Zan.Tab, {
         name: title,
         data: data,
         format: function (val, name) {
-          return val;
+          return '¥' + val;
         }
       }],
       xAxis: {
@@ -256,7 +256,7 @@ Page(Object.assign({}, Zan.Tab, {
       yAxis: {
         // title: '成交金额 (万元)',
         format: function (val) {
-          return val.toFixed(0);
+          return '¥'+val.toFixed(0);
         },
         min: 0
       },

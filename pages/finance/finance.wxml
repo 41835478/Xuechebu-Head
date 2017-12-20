@@ -38,7 +38,7 @@
       <view class='recordView'>
         <view class='recordText'>{{item.pdate}}</view>
         <view class='recordText'>{{item.enrollnum}}</view>
-        <block wx:if="{{item.isRise==0}}">
+        <!-- <block wx:if="{{item.isRise==0}}">
              <view style='color:#333;' class='recordText'>→</view>
         </block>
         <block wx:if="{{item.isRise==1}}">
@@ -46,7 +46,8 @@
         </block>
         <block wx:if="{{item.isRise==-1}}">
              <view style='color:green;' class='recordText'>↓</view>
-        </block>
+        </block> -->
+        <view style='color:skyblue;' class='recordText'>{{item.income}}</view>
       </view>
       <view class='line'></view>
     </block>

@@ -1,5 +1,7 @@
 var Zan = require('../../dist/index');
 var wxCharts = require('../../utils/wxcharts.js');
+var functions = require('../functions.js');
+
 var lineChart = null;
 var chartArray = [];
 var seletedTab = '1'; //1表示查询空车率 2表示查询预约学员
@@ -190,8 +192,10 @@ Page(Object.assign({}, Zan.Tab, {
       console.error('getSystemInfoSync failed!');
     }
 
-    if (!chartArray.length) {
-      for (var i = 0; i < this.data.kemuArray.length; i++) {
+    chartArray = [];
+    for (var i = 0; i < this.data.kemuArray.length; i++) {
+        var minNum = functions.getMaxNumFromArray(allData[i]);
+        var yatr = functions.getYAtrWithNum(minNum);
         var chartLine = new wxCharts({
           canvasId: this.data.kemuArray[i].cavasId,
           type: 'line',
@@ -208,13 +212,7 @@ Page(Object.assign({}, Zan.Tab, {
           xAxis: {
             disableGrid: true
           },
-          yAxis: {
-            // title: '成交金额 (万元)',
-            format: function (val) {
-              return val.toFixed(0);
-            },
-            min: 0
-          },
+          yAxis: yatr,
           width: windowWidth,
           height: 200,
           dataLabel: false,
@@ -225,22 +223,6 @@ Page(Object.assign({}, Zan.Tab, {
           }
         });
         chartArray.push(chartLine);
-      }
-    } else {
-      for (var i = 0; i < this.data.kemuArray.length; i++) {
-        var chartLine = chartArray[i];
-        var series = [{
-          name: this.data.kemuArray[i].kemuName + title,
-          data: allData[i],
-          format: function (val, name) {
-            return val.toFixed(0);
-          }
-        }];
-        chartLine.updateData({
-          categories: category[i],
-          series: series,
-        });
-      }
     }
 
 

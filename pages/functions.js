@@ -56,6 +56,38 @@ module.exports = {
       }
     })
   },
+  getMaxNumFromArray:function(array) {
+    var max = 0;
+    for(var i = 0; i < array.length; i ++) {
+      if(array[i] > max) {
+        max = array[i];
+      }
+    }
+    return max;
+  },
+  getYAtrWithNum:function(minNum) {
+    var yatr = {};
+    if (minNum >= 5) {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return val.toFixed(0);
+        },
+        min: 0,
+      }
+    } else {
+      yatr = {
+        // title: '成交金额 (万元)',
+        format: function (val) {
+          return val.toFixed(0);
+        },
+        min: 0,
+        max: 5
+      }
+    }
+    return yatr;
+  }
+  ,
   fetchChartList: function (url, jgid, cb) {
     var that = this
     wx.request({
