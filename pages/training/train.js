@@ -203,7 +203,7 @@ Page(Object.assign({}, Zan.Tab, {
             name: this.data.kemuArray[i].kemuName + title,
             data: allData[i],
             format: function (val, name) {
-              return val;
+              return val + '%';
             }
           }],
           xAxis: {
@@ -212,13 +212,13 @@ Page(Object.assign({}, Zan.Tab, {
           yAxis: {
             // title: '成交金额 (万元)',
             format: function (val) {
-              return val.toFixed(0);
+              return val;
             },
             min: 0
           },
           width: windowWidth,
           height: 200,
-          dataLabel: false,
+          dataLabel: true,
           dataPointShape: true,
           enableScroll: true,
           extra: {
@@ -228,6 +228,12 @@ Page(Object.assign({}, Zan.Tab, {
         chartArray.push(chartLine);
       }
     } else {
+      var unit = '';
+      if(seletedTab == '1') {
+        unit = '%';
+      } else {
+        unit = '';
+      }
       //有表格就更新
       for (var i = 0; i < this.data.kemuArray.length; i++) {
         var chartLine = chartArray[i];
@@ -235,12 +241,19 @@ Page(Object.assign({}, Zan.Tab, {
           name: this.data.kemuArray[i].kemuName + title,
           data: allData[i],
           format: function (val, name) {
-            return val.toFixed(0);
+            return val.toFixed(0) + unit;
           }
         }];
         chartLine.updateData({
           categories: category[i],
           series: series,
+          yAxis: {
+            // title: '成交金额 (万元)',
+            format: function (val) {
+              return val;
+            },
+            min: 0
+          }
         });
     }
     }

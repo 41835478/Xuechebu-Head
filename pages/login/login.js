@@ -140,15 +140,16 @@ Page({
     var that = this;
     wx.request({
       url: getApp().globalData.imageURL + '/sms/GetSmsRandCode',
+      // url:  'https:/jptest2.xuechebu.com/sms/GetSmsRandCode',
       data: {
         phonenum: that.data.inputMobileNumber,
         codemark: "1",
-        islogin: "1"
+        islogin: "1",
+        divcetype: '7'
       },
       header: {
-        "Content-Type": "json"
-      
-      },
+        'content-type': 'application/json' 
+              },
       success: function (res) {
         var data = res.data
         if (data.code==0){
@@ -158,7 +159,7 @@ Page({
           })
        
         }else{
-          that.showAlert(true, data.message+'!');
+          that.showAlert(true, data.message);
         }
       }
     })
@@ -176,7 +177,7 @@ Page({
       if (that.data.has_get_vcode) {
         //执行网络请求，进行登录
         that.loginByPhone(function (data) {
-
+          //回调
         });
       } else {
         new app.WeToast()
@@ -198,14 +199,15 @@ Page({
    var userInfo = {};
    wx.request({
      url: getApp().globalData.imageURL +'/UserCenter/UserInfo/LoginCode',
+    //  url: 'https:/jptest2.xuechebu.com/UserCenter/UserInfo/LoginCode',
+
      data: { username: that.data.inputMobileNumber,
            code: that.data.inputVcode,
            usertype:'4',  
         },
 
     header: {
-       "Content-Type": "json"
-      
+      'content-type': 'application/json' 
      },
      success: function (res) {
        var data = res.data
@@ -214,15 +216,19 @@ Page({
          //设置用户的数据
         wx.setStorageSync("userInfo", data.data),
         wx.setStorageSync('isLoginByPhone','true'),
-          wx.setStorageSync('APIURLIOS', data.data.SchoolMasterUrl),
+        wx.setStorageSync('APIURLIOS', data.data.SchoolMasterUrl),
         wx.setStorageSync('JGID', data.data.JGID)
-        getApp().globalData.schoolURL = data.data.APIURLIOS;
          that.setData({
            mobile_login: true,
          })
         
         wx.switchTab({
-          url: '../main/index'
+          url: '../main/index',
+          success: function (e) {
+            var page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            page.onLoad();
+          } 
          });
          
        } else {
@@ -308,16 +314,16 @@ Page({
 
   },
   showAlert:function(sucess, title) {
-    var image = '';
-    if(sucess) {
-      image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
-    } else {
-      image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
-    }
+    // var image = '';
+    // if(sucess) {
+    //   image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
+    // } else {
+    //   image = 'data: image / png; base64, iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAMAAAApB0NrAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAnJiIn3CQg310ZwhMGg6iZHprXFFOGBNhVT+Ni0hDHxanqzycuq9OAAABM0lEQVQ4y32T3XaDIBCEWVTUEDUxWhtj/tp5/2fsAm1JFJgb4fgddnYZhBCtSKi1f3s1JZgqMwhBPaLIUYGhgYDLPUzoikAHXow5UDZBLwVAvV3uKQxpRvLP3838xdDHhmHkefrfzQRk65PqDtIjrlw2vTedQ7LdNfR4bVpC7t4Q113mPdUEVWwcjpKNT3922UsvtrqZYbZudN2qkPfUAYuBSoACiDeujd3cdxTylFXK3FFcZwXAeEnpAFYhkirAqpLJrAhGSxMldC05DMbTZYoWcnbP0l5LUDXsXBxUNhGEbOpcxhd30iYvu3CefEceYV19nuJ52Xcr47oGpEdCr6W1TW/z5CDfUSB115yhuyt0BLqTCGh+mieVRBiyJ7lCHgmUU1rcFE83qpFo4M93MnUDIz9bMRqeJ9tieAAAAABJRU5ErkJggg==';
+    // }
     var that = this;
     new app.WeToast()
     that.wetoast.toast({
-      img: image,
+      img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/cross.png',
       imgClassName: 'my_wetoast_img',
       imgMode: 'scaleToFill',
       title: title,
