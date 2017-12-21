@@ -33,5 +33,5 @@
   margin-left: 40rpx;
   font-size: 15px;
   font-weight: 500;
-  color: red;
+  color: #1b8eef;
 }

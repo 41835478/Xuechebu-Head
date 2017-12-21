@@ -7,7 +7,7 @@
   height: 100%;
 }
 .catView {
-  margin-top: 40px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,12 +26,10 @@
 }
 
 .bottomView {
-  position: fixed;
-  bottom: 0;
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 40px;
+  margin-top: 50px;
 }
 
 .line {
@@ -42,7 +40,7 @@
 }
 
 .text {
-  font-size: 17px;
+  font-size: 16px;
   color: #666666;
   width: 20%;
 }
