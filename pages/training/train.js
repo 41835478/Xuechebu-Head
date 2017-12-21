@@ -13,7 +13,7 @@ Page(Object.assign({}, Zan.Tab, {
         title: '空车率'
       }, {
         id: '2',
-        title: '车辆预约'
+        title: '车辆预约率'
       }],
       selectedId: '1',
       scroll: false
@@ -149,7 +149,7 @@ Page(Object.assign({}, Zan.Tab, {
     } else if(seletedTab == '2') {
       result1 = data.data.kemu2XunLian;//科二车辆预约
       result2 = data.data.kemu3XunLian;//科三车辆预约
-      title = '车辆预约';
+      title = '车辆预约率';
       if(!result1.length) {
         category1.push('暂无数据');
         data1.push(0);
@@ -197,7 +197,7 @@ Page(Object.assign({}, Zan.Tab, {
     if (seletedTab == '1') {
       unit = '%';
     } else {
-      unit = '';
+      unit = '%';
     }
     for (var i = 0; i < this.data.kemuArray.length; i++) {
       var minNum = functions.getMaxNumFromArray(allData[i]);
