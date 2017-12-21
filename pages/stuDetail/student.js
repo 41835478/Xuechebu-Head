@@ -53,6 +53,7 @@ Page(Object.assign({}, Zan.Tab, {
   },
   touchHandler: function (e) {
     lineChart.scrollStart(e);
+    
   },
   moveHandler: function (e) {
     lineChart.scroll(e);
@@ -132,6 +133,15 @@ Page(Object.assign({}, Zan.Tab, {
   },
 
   onLoad: function (e) {
+    var that = this;
+     wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          windowHeight: res.windowHeight
+        })
+      },
+    })
+
     seletedTab = '1';
     dateTab = '1';
     var windowWidth = 320;

@@ -5,6 +5,7 @@
 
 .dateChoice {
   /* display: inline-block; */
+  margin-top: 10px;
   text-align: center;
   height: 40px;
   width: 100%;
