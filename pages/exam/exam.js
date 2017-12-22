@@ -167,7 +167,7 @@ Page(Object.assign({}, Zan.Tab, {
     var kemuA = ['科目一', '科目二', '科目三', '科目四'];
     var that = this;
     wx.request({
-      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/exam/getExamDate',
+      url: wx.getStorageSync('APIURLIOS') + '/jiaxiaoapi/exam/getExamDate',
       method: 'GET',
       data: {
         jgid: wx.getStorageSync('JGID'),

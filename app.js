@@ -30,11 +30,14 @@ App({
 
   globalData: {
     userInfo: null,
-    imageURL: 'https://jptest2.xuechebu.com',
-    webURL: 'https://jptest4.xuechebu.com',
-    schoolURL: 'https://xzzstest1.xuechebu.com',
-    // imgaeURL: 'https://api.xuechebu.com',
-    // webURL: 'http://xcbapi.xuechebu.com',
+    // imageURL: 'https://jptest2.xuechebu.com',
+    // webURL: 'https://jptest4.xuechebu.com',
     // schoolURL: 'https://xzzstest1.xuechebu.com',
+    // webDetail: 'https://jptest5.xuechebu.com',
+
+    webDetail:'https://m.xuechebu.com',
+    imageURL: 'https://api.xuechebu.com',
+    webURL: 'https://xcbapi.xuechebu.com',
+    schoolURL: 'https://xzzstest1.xuechebu.com'
   }
 })

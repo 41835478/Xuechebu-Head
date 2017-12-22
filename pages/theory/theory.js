@@ -104,7 +104,7 @@ Page(Object.assign({}, Zan.Tab, {
   loadData: function () {
     var that = this;
     wx.request({
-      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/theoryperiod/getFullXueShi',
+      url: wx.getStorageSync('APIURLIOS') + '/jiaxiaoapi/theoryperiod/getFullXueShi',
       method: 'GET',
       data: {
         jgid: wx.getStorageSync('JGID'),

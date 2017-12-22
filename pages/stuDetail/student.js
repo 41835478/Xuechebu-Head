@@ -160,7 +160,7 @@ Page(Object.assign({}, Zan.Tab, {
     var baseURl = getApp().globalData.schoolURL;
 
     wx.request({
-      url: wx.getStorageSync('APIURLIOS') +'/SchoolMaster/statisticsdata/getSchoolStatisticsData',
+      url: wx.getStorageSync('APIURLIOS') +'/jiaxiaoapi/statisticsdata/getSchoolStatisticsData',
       method: 'GET',
       data: {
         jgid: wx.getStorageSync('JGID'),

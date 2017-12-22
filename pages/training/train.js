@@ -103,7 +103,7 @@ Page(Object.assign({}, Zan.Tab, {
   loadData:function() {
     var that = this;
     wx.request({
-      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/cardrill/getcardrilldata',
+      url: wx.getStorageSync('APIURLIOS') + '/jiaxiaoapi/cardrill/getcardrilldata',
       method: 'GET',
       data: {
         jgid: '140001',

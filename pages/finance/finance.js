@@ -142,7 +142,7 @@ Page(Object.assign({}, Zan.Tab, {
     var that = this;
 
     wx.request({
-      url: wx.getStorageSync('APIURLIOS') + '/SchoolMaster/financialStatistics/getfinancialdata',
+      url: wx.getStorageSync('APIURLIOS') + '/jiaxiaoapi/financialStatistics/getfinancialdata',
       method: 'GET',
       data: {
         jgid: wx.getStorageSync('JGID'),

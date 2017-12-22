@@ -84,7 +84,7 @@ Page({
 
       //choiceList  新闻列表
       wx.request({
-        url: getApp().globalData.webURL + '/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=7',
+        url: getApp().globalData.webURL + '/api/Information/GetInformationList?pdCode=XZD_XWZX&pIndex=1&pSize=6',
           method: 'GET',
           data: {},
           header: {

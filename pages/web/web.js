@@ -31,9 +31,9 @@ Page({
   var url = '';
   if (e.type == 1) {
     if (e.id == 0 || e.id == '') {
-      url = 'https://jptest5.xuechebu.com/xuechebu/information.html?pdcode=XZD_XWZX';
+      url = getApp().globalData.webDetail + '/xuechebu/information.html?pdcode=XZD_XWZX';
     } else {
-        url = 'https://jptest5.xuechebu.com/xuechebu/article.html?id=' + e.id;
+      url = getApp().globalData.webDetail + '/xuechebu/article.html?id=' + e.id;
     }
   } else {
     var data = wx.getStorageSync('ScrollData');
