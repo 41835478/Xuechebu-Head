@@ -23,7 +23,7 @@
     <view class='title1'>
           <text class='text1'>{{item.kemuName}}</text>
     </view>
-    <view class='cavasTitle'>{{show == 'film_favorite' ? '空车率' : '车辆预约'}}</view>
+    <view class='cavasTitle'>{{show == 'film_favorite' ? '空车率' : '车辆预约率'}}</view>
     <canvas canvas-id="{{item.cavasId}}" disable-scroll="true" class="canvas" data-id="{{item.id}}" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler">
     </canvas>
 </block>

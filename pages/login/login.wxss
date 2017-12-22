@@ -17,7 +17,19 @@
     height: 360rpx;
     background-color: #21D2A9;
 } */
-
+.login-content {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    box-sizing: border-box;
+    /* background: #F5F5F5; */
+    font: menu;
+    background-color: white;
+}
 .blank {
   background-color: white;
   height: 120rpx;

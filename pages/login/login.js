@@ -14,9 +14,37 @@ Page({
     systemInfo: {},
     fromPage: '',
     motto: '什么👻',
+    show: false
   },
 
   onLoad: function () {
+    var oldDate = wx.getStorageSync('LogDate');
+    var nowDate = Date.now();
+    if (oldDate>= 0) {
+      if (nowDate - oldDate >= 86400000) {
+        //登录超过一天重新登录
+        this.setData({
+          show: true
+        })
+      } else {
+        //登录没有超过一天  直接进入
+        this.setData({
+          show: false
+        })
+        wx.switchTab({
+          url: '../main/index',
+          success: function (e) {
+            var page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            page.onLoad();
+          }
+        });
+      }
+    } else {
+      this.setData({
+        show:true
+      })
+    }
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
@@ -214,6 +242,9 @@ Page({
 
        if (data.code == 0) {
          //设置用户的数据
+        var date = Date.now();
+        wx.setStorageSync('LogDate', date);
+
         wx.setStorageSync("userInfo", data.data),
         wx.setStorageSync('isLoginByPhone','true'),
         wx.setStorageSync('APIURLIOS', data.data.SchoolMasterUrl),

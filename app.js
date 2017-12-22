@@ -8,6 +8,8 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    var date = Date.now()
+    
   },
 
   getUserInfo: function(cb) {

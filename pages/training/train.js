@@ -159,12 +159,12 @@ Page(Object.assign({}, Zan.Tab, {
         for (var i = 0; i < result1.length; i++) {
           var item = result1[i];
           category1.push(item.pdate);
-          data1.push(item.enrollnum);
+          data1.push(item.percentnum);
         }
         for (var i = 0; i < result2.length; i++) {
           var item = result2[i];
           category2.push(item.pdate);
-          data2.push(item.enrollnum);
+          data2.push(item.percentnum);
         }
       }
     }

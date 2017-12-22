@@ -2,7 +2,9 @@
 <import src="../../src/wetoast.wxml"/>
 
 <view class="login_container">
-   
+
+  <view class='login-content'hidden='{{show ? false : true}}'>
+
     <view class='blank'></view>
         <view class="mobile-login-content">
             <view class="mobile-login-number">
@@ -36,7 +38,9 @@
             <text>如您需要使用，请联系:</text>
             <text class="agree-txt">400-969-8088</text>
         </view> 
-
+<!--login-content  -->
+    </view>
+<!--login-container  -->
 </view>
 
 <template is="wetoast" data="{{...__wetoast__}}"/>
